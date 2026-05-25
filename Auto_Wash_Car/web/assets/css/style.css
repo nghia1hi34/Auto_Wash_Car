@@ -15,9 +15,10 @@ a:hover {
 }
 
 .page {
-    max-width: 960px;
-    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
     padding: 32px 20px;
+    box-sizing: border-box;
 }
 
 .auth-page {
@@ -25,6 +26,16 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-image: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url('../images/CarwashGTAV.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .auth-box,
@@ -40,7 +51,42 @@ a:hover {
     max-width: 380px;
 }
 
+.register-box {
+    max-width: 560px;
+}
+
 h1 {
+    margin-top: 0;
+}
+
+.form-note {
+    margin: -8px 0 20px;
+    color: #666;
+    text-align: center;
+}
+
+.form-section {
+    margin-bottom: 24px;
+}
+
+.form-section h2 {
+    margin: 0 0 14px;
+    font-size: 18px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.vehicle-form {
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ddd;
+}
+
+.vehicle-form h2 {
     margin-top: 0;
 }
 
@@ -83,6 +129,20 @@ button:hover {
     text-align: center;
 }
 
+.error-message {
+    margin: 0 0 12px;
+    color: #b00020;
+    font-weight: bold;
+    text-align: center;
+}
+
+.success-message {
+    margin: 0 0 12px;
+    color: #137333;
+    font-weight: bold;
+    text-align: center;
+}
+
 .topbar {
     display: flex;
     align-items: center;
@@ -121,3 +181,10 @@ td {
 th {
     background-color: #eef4fb;
 }
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

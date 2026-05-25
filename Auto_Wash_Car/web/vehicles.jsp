@@ -25,6 +25,50 @@
             <section class="content-box">
                 <h1>Vehicle Information</h1>
 
+                <%-- Hien thong bao khi them xe thanh cong/that bai. --%>
+                <p class="error-message">${requestScope.ERROR}</p>
+                <p class="success-message">${requestScope.SUCCESS}</p>
+
+                <%--
+                    Form them xe sau khi customer da dang nhap.
+                    Luu y:
+                    - customer_id khong nhap trong form.
+                    - VehicleServlet se lay customer_id thong qua session LOGIN_USER.
+                    - Mot customer co the co nhieu xe.
+                --%>
+                <form action="vehicles" method="post" class="vehicle-form">
+                    <h2>Add Vehicle</h2>
+
+                    <div class="form-group">
+                        <label for="licensePlate">License plate</label>
+                        <input type="text" id="licensePlate" name="licensePlate"
+                               placeholder="51A-12345" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <input type="text" id="brand" name="brand"
+                                   placeholder="Toyota">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <input type="text" id="model" name="model"
+                                   placeholder="Vios">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        <input type="text" id="color" name="color"
+                               placeholder="White">
+                    </div>
+
+                    <button type="submit">Add Vehicle</button>
+                </form>
+
+                <h2>My Vehicles</h2>
                 <table>
                     <thead>
                         <tr>
