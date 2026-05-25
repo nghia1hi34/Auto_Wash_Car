@@ -15,9 +15,10 @@ a:hover {
 }
 
 .page {
-    max-width: 960px;
-    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
     padding: 32px 20px;
+    box-sizing: border-box;
 }
 
 .auth-page {
@@ -25,6 +26,16 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-image: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url('../images/CarwashGTAV.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .auth-box,
@@ -176,3 +187,4 @@ th {
         grid-template-columns: 1fr;
     }
 }
+
