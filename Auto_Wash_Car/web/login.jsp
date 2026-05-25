@@ -16,6 +16,9 @@
             <section class="auth-box">
                 <h1>Login</h1>
 
+                <%-- Hien thong bao loi khi dang nhap sai hoac tai khoan bi khoa. --%>
+                <p class="error-message">${requestScope.ERROR}</p>
+
                 <form action="login" method="post">
                     <div class="form-group">
                         <label for="email">Email</label>

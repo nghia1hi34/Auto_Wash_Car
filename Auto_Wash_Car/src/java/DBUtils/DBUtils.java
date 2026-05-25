@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class DBUtils {
     //    Do not change this code
-    private static final String DB_NAME = "DATABASE_NAME";
+    private static final String DB_NAME = "AutoWashDB_New";
     private static final String DB_USER_NAME = "SA";
     private static final String DB_PASSWORD = "12345";
 
