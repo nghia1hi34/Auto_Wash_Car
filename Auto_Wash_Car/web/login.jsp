@@ -18,6 +18,7 @@
 
                 <%-- Hien thong bao loi khi dang nhap sai hoac tai khoan bi khoa. --%>
                 <p class="error-message">${requestScope.ERROR}</p>
+                <p class="success-message">${requestScope.SUCCESS}</p>
 
                 <form action="login" method="post">
                     <div class="form-group">
