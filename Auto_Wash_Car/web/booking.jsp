@@ -91,10 +91,6 @@
                         Premium Wash - 250.000đ
                     </option>
 
-                    <option>
-                        Full Detailing - 500.000đ
-                    </option>
-
                 </select>
 
             </div>
