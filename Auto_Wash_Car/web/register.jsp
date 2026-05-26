@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
+        <%@include file="includes/header.jsp"%>
         <main class="page auth-page">
             <section class="auth-box register-box">
                 <h1>Register</h1>

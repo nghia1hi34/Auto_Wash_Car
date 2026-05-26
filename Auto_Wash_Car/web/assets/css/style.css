@@ -188,3 +188,46 @@ th {
     }
 }
 
+/*HEADER*/
+.header {   
+    background-color: #1f2a36;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1{
+    margin: 0;
+}
+
+.header p{
+    margin-top: 8px;
+}
+
+/*MENU*/
+
+.menu {
+     background-color: #16202a;
+     padding: 14px;
+     display: flex;
+     justify-content: center;
+     gap: 24px
+}
+.menu a{
+    color: white;
+    font-weight: bold;
+}
+
+.menu a:hover{
+    color: #ffd54f;
+    text-decoration: none;
+}
+
+/*FOOTER*/
+.footer{
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: 40px;
+}
