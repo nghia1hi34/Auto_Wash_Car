@@ -20,25 +20,7 @@
 
 <body class="auth-page">
 
-<header class="topbar">
-
-    <a href="home.jsp">
-        Auto Wash Pro
-    </a>
-
-    <nav>
-
-        <a href="home.jsp">Home</a>
-
-        <a href="profile.jsp">Profile</a>
-
-        <a href="vehicles.jsp">Vehicles</a>
-
-        <a href="logout">Logout</a>
-
-    </nav>
-
-</header>
+<jsp:include page="includes/header.jsp" />
 
 <main class="page">
 
@@ -152,6 +134,8 @@
     </section>
 
 </main>
+
+<jsp:include page="includes/footer.jsp" />
 
 </body>
 
