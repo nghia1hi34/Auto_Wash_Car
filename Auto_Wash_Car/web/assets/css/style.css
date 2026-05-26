@@ -231,4 +231,153 @@ th {
     padding: 16px;
     margin-top: 40px;
 }
-/*mainmain*/
+/* DASHBOARD */
+
+.dashboard {
+    text-align: center;
+}
+
+/* GRID */
+
+.dashboard-grid {
+
+    margin-top: 32px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 24px;
+}
+
+/* CARD */
+
+.dashboard-card {
+
+    padding: 28px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+
+    border:
+        1px solid rgba(255,255,255,0.15);
+
+    color: white;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+
+    transform: translateY(-5px);
+
+    background:
+        rgba(255,255,255,0.2);
+
+    text-decoration: none;
+}
+
+.dashboard-card h2 {
+
+    margin-top: 0;
+}
+
+/* BOOKING */
+
+.booking-box {
+
+    max-width: 700px;
+
+    margin: auto;
+}
+
+/* SELECT */
+
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid rgba(255,255,255,0.25);
+
+    background:
+        rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+/* OPTION */
+
+option {
+    color: black;
+}
+
+/* TEXTAREA */
+
+textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid rgba(255,255,255,0.25);
+
+    background:
+        rgba(255,255,255,0.15);
+
+    color: white;
+
+    resize: none;
+
+    font-size: 15px;
+}
+
+/* SUMMARY */
+
+.booking-summary {
+
+    margin-top: 28px;
+
+    padding: 22px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+}
+
+/* FINAL PRICE */
+
+.final-price {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #7dffb3;
+}
