@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-        <%@page contentType="text/html" pageEncoding="UTF-8"%>
+       
         <header class="topbar">
             <a href="home.jsp">Auto Wash Pro</a>
             <nav>
