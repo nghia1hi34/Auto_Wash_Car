@@ -27,6 +27,18 @@
 
     <nav>
 
+        <a href="booking.jsp">
+            Booking
+        </a>
+
+        <a href="history.jsp">
+            History
+        </a>
+
+        <a href="rewards.jsp">
+            Rewards
+        </a>
+
         <a href="profile.jsp">
             Profile
         </a>
@@ -48,22 +60,68 @@
     <section class="content-box dashboard">
 
         <h1>
-            Welcome to Auto Wash Pro
+            Welcome Back, Customer
         </h1>
 
         <p>
-            Choose a feature below
+            Manage your bookings, rewards and vehicles
         </p>
+
+        <!-- QUICK INFO -->
+
+        <div class="user-summary">
+
+            <div class="summary-card">
+
+                <h3>
+                    Current Tier
+                </h3>
+
+                <p>
+                    Gold
+                </p>
+
+            </div>
+
+            <div class="summary-card">
+
+                <h3>
+                    Loyalty Points
+                </h3>
+
+                <p>
+                    1250
+                </p>
+
+            </div>
+
+            <div class="summary-card">
+
+                <h3>
+                    Total Washes
+                </h3>
+
+                <p>
+                    18
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- DASHBOARD -->
 
         <div class="dashboard-grid">
 
             <a href="booking.jsp"
                class="dashboard-card">
 
-                <h2>Booking</h2>
+                <h2>
+                    Book Wash
+                </h2>
 
                 <p>
-                    Book your next wash
+                    Schedule your next wash
                 </p>
 
             </a>
@@ -71,10 +129,12 @@
             <a href="history.jsp"
                class="dashboard-card">
 
-                <h2>History</h2>
+                <h2>
+                    Wash History
+                </h2>
 
                 <p>
-                    View wash history
+                    View all previous washes
                 </p>
 
             </a>
@@ -82,21 +142,25 @@
             <a href="rewards.jsp"
                class="dashboard-card">
 
-                <h2>Rewards</h2>
+                <h2>
+                    Rewards
+                </h2>
 
                 <p>
-                    Check loyalty points
+                    Check points and benefits
                 </p>
 
             </a>
 
-            <a href="profile.jsp"
+            <a href="vehicles.jsp"
                class="dashboard-card">
 
-                <h2>Profile</h2>
+                <h2>
+                    My Vehicles
+                </h2>
 
                 <p>
-                    Manage your account
+                    Manage registered vehicles
                 </p>
 
             </a>
