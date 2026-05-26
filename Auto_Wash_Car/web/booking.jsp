@@ -28,13 +28,29 @@
 
     <nav>
 
-        <a href="home.jsp">Home</a>
+        <a href="home.jsp">
+            Home
+        </a>
 
-        <a href="profile.jsp">Profile</a>
+        <a href="history.jsp">
+            History
+        </a>
 
-        <a href="vehicles.jsp">Vehicles</a>
+        <a href="rewards.jsp">
+            Rewards
+        </a>
 
-        <a href="logout">Logout</a>
+        <a href="profile.jsp">
+            Profile
+        </a>
+
+        <a href="vehicles.jsp">
+            Vehicles
+        </a>
+
+        <a href="logout">
+            Logout
+        </a>
 
     </nav>
 
@@ -52,8 +68,54 @@
             Schedule your next premium wash
         </p>
 
+        <!-- USER STATUS -->
+
+        <div class="user-summary">
+
+            <div class="summary-card">
+
+                <h3>
+                    Current Tier
+                </h3>
+
+                <p>
+                    Gold
+                </p>
+
+            </div>
+
+            <div class="summary-card">
+
+                <h3>
+                    Loyalty Points
+                </h3>
+
+                <p>
+                    1250
+                </p>
+
+            </div>
+
+            <div class="summary-card">
+
+                <h3>
+                    Priority Booking
+                </h3>
+
+                <p>
+                    12 Days
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- BOOKING FORM -->
+
         <form action="booking"
               method="post">
+
+            <!-- VEHICLE -->
 
             <div class="form-group">
 
@@ -61,19 +123,32 @@
                     Select Vehicle
                 </label>
 
-                <select name="vehicleId">
+                <select name="vehicleId"
+                        required>
 
-                    <option>
-                        51A-99999 - Toyota Camry
+                    <option disabled selected>
+
+                        -- Select Vehicle --
+
                     </option>
 
-                    <option>
+                    <option value="1">
+
+                        51A-99999 - Toyota Camry
+
+                    </option>
+
+                    <option value="2">
+
                         52B-12345 - Honda Civic
+
                     </option>
 
                 </select>
 
             </div>
+
+            <!-- SERVICE -->
 
             <div class="form-group">
 
@@ -81,23 +156,38 @@
                     Select Service
                 </label>
 
-                <select name="serviceId">
+                <select name="serviceId"
+                        required>
 
-                    <option>
+                    <option disabled selected>
+
+                        -- Select Service --
+
+                    </option>
+
+                    <option value="1">
+
                         Basic Wash - 100.000đ
+
                     </option>
 
-                    <option>
+                    <option value="2">
+
                         Premium Wash - 250.000đ
+
                     </option>
 
-                    <option>
+                    <option value="3">
+
                         Full Detailing - 500.000đ
+
                     </option>
 
                 </select>
 
             </div>
+
+            <!-- DATE -->
 
             <div class="form-group">
 
@@ -111,10 +201,12 @@
 
             </div>
 
+            <!-- NOTE -->
+
             <div class="form-group">
 
                 <label>
-                    Notes
+                    Additional Notes
                 </label>
 
                 <textarea name="note"
@@ -123,6 +215,8 @@
 
             </div>
 
+            <!-- SUMMARY -->
+
             <div class="booking-summary">
 
                 <h2>
@@ -130,25 +224,48 @@
                 </h2>
 
                 <p>
-                    Tier: Gold Member
+
+                    Tier:
+                    <strong>Gold Member</strong>
+
                 </p>
 
                 <p>
-                    Original Price: 250.000đ
+
+                    Original Price:
+                    <strong>250.000đ</strong>
+
                 </p>
 
                 <p>
-                    Discount: 20%
+
+                    Discount:
+                    <strong>20%</strong>
+
+                </p>
+
+                <p>
+
+                    Points Earned:
+                    <strong>+200 pts</strong>
+
                 </p>
 
                 <p class="final-price">
-                    Final Price: 200.000đ
+
+                    Final Price:
+                    200.000đ
+
                 </p>
 
             </div>
 
+            <!-- BUTTON -->
+
             <button type="submit">
+
                 Confirm Booking
+
             </button>
 
         </form>
