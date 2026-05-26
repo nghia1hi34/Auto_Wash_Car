@@ -308,21 +308,32 @@ select {
 
     border-radius: 10px;
 
-    border:
-        1px solid rgba(255,255,255,0.25);
+    border: 2px solid #5dade2;
 
-    background:
-        rgba(255,255,255,0.15);
+    background-color:
+        rgba(255,255,255,0.95);
 
-    color: white;
+    color: #1f2a36;
 
     font-size: 15px;
 
+    font-weight: 500;
+
     outline: none;
 
-    box-sizing: border-box;
-}
+    cursor: pointer;
 
+    box-sizing: border-box;
+
+    transition: 0.3s;
+}
+select:focus {
+
+    border-color: #1fa2ff;
+
+    box-shadow:
+        0 0 10px rgba(31,162,255,0.5);
+}
 /* OPTION */
 
 option {
