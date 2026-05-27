@@ -27,24 +27,24 @@
 
     <nav>
 
-        <a href="booking.jsp">
-            Booking
+    <a href="menuusers/booking.jsp">Booking</a>
+            
         </a>
 
-        <a href="history.jsp">
-            History
+    <a href="menuusers/history.jsp">History</a>
+            
         </a>
 
-        <a href="rewards.jsp">
-            Rewards
+        <a href="menuusers/rewards.jsp">Rewards</a>
+            
         </a>
 
-        <a href="profile.jsp">
-            Profile
+        <a href="menuusers/profile.jsp">Profile</a>
+            
         </a>
 
-        <a href="vehicles.jsp">
-            Vehicles
+        <a href="menuusers/vehicles.jsp">Vehicles</a>
+            
         </a>
 
         <a href="logout">
@@ -56,17 +56,6 @@
 </header>
 
 <main class="page">
-
-    <section class="content-box dashboard">
-
-        <h1>
-            Welcome Back, Customer
-        </h1>
-
-        <p>
-            Manage your bookings, rewards and vehicles
-        </p>
-
         <!-- QUICK INFO -->
 
         <div class="user-summary">
@@ -113,7 +102,7 @@
 
         <div class="dashboard-grid">
 
-            <a href="booking.jsp"
+            <a href="menuusers/booking.jsp"
                class="dashboard-card">
 
                 <h2>
@@ -126,7 +115,7 @@
 
             </a>
 
-            <a href="history.jsp"
+            <a href="menuusers/history.jsp"
                class="dashboard-card">
 
                 <h2>
@@ -139,7 +128,7 @@
 
             </a>
 
-            <a href="rewards.jsp"
+            <a href="menuusers/rewards.jsp"
                class="dashboard-card">
 
                 <h2>
@@ -152,7 +141,7 @@
 
             </a>
 
-            <a href="vehicles.jsp"
+            <a href="menuusers/vehicles.jsp"
                class="dashboard-card">
 
                 <h2>

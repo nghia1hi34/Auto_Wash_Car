@@ -5,8 +5,11 @@
 --%>
 <div class="menu">  
     <a href="home.jsp">Home</a>
-    <a href="profile.jsp">Profile</a>
-    <a href="vehicles.jsp">Vehicles</a>
+    <a href="menuusers/profile.jsp">Profile</a>
+    <a href="menuusers/vehicles.jsp">Vehicles</a>
     <a href="login.jsp">Login</a>
     <a href="register.jsp">Register</a>
+    <a href="menuusers/history.jsp">History</a>
+    <a href="menuusers/booking.jsp">Booking</a>
+    <a href="menuusers/rewards.jsp">Rewards</a> 
 </div>
