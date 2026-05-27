@@ -1,5 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    /*
+     * Security note:
+     * - main.jsp la trang sau dang nhap, nen bat buoc phai co LOGIN_USER trong session.
+     * - Neu user go truc tiep /main.jsp hoac /main.jsp?page=... khi chua login,
+     *   chuyen ve login.jsp de tranh bypass man hinh dang nhap.
+     */
+    if (session.getAttribute("LOGIN_USER") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
     String currentPage = request.getParameter("page");
     String contentPage = "/usercontent/dashboard.jsp";
     String pageTitle = "Dashboard";
