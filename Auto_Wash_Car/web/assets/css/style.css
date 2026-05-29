@@ -96,14 +96,69 @@ h1 {
     gap: 14px;
 }
 
-.vehicle-form {
-    margin-bottom: 28px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #ddd;
+/* VEHICLE PAGE */
+
+.vehicle-layout{
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-top: 24px;
 }
 
-.vehicle-form h2 {
+.vehicle-left,
+.vehicle-right{
+    background-color: #ffffff;
+    border: 1px solid #d7e5f2;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.vehicle-form{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.vehicle-form h2,
+.vehicle-right h2{
     margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.vehicle-right{
+    overflow-x: auto;
+}
+
+.vehicle-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vehicle-table th,
+.vehicle-table td{
+    padding: 14px;
+    border: 1px solid #d7e5f2;
+    text-align: left;
+}
+
+.vehicle-table th{
+    background-color: #eef4fb;
+    font-weight: bold;
+}
+
+.empty-row{
+    text-align: center;
+    color: #666;
+    padding: 24px;
+}
+
+@media (max-width: 900px){
+
+    .vehicle-layout{
+        grid-template-columns: 1fr;
+    }
+
 }
 
 .form-group {
