@@ -27,6 +27,12 @@
     } else if ("profile".equals(currentPage)) {
         contentPage = "/usercontent/profile.jsp";
         pageTitle = "Profile";
+    } else if ("profile-edit".equals(currentPage)) {
+        contentPage = "/usercontent/profile-edit.jsp";
+        pageTitle = "Edit Profile";
+    } else if ("profile-security".equals(currentPage)) {
+        contentPage = "/usercontent/profile-security.jsp";
+        pageTitle = "Profile Security";
     } else if ("vehicles".equals(currentPage)) {
         contentPage = "/usercontent/vehicles.jsp";
         pageTitle = "Vehicles";
