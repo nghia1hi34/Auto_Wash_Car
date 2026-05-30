@@ -777,3 +777,22 @@ textarea {
 
     color: #7dffb3;
 }
+/*info profile*/
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-list p {
+    margin: 0;
+    padding: 12px;
+    background: #f7fbff;
+    border: 1px solid #d7e5f2;
+    border-radius: 8px;
+}
+
+.dark-mode .info-list p {
+    background: #101820;
+    border-color: #2c3d4f;
+}

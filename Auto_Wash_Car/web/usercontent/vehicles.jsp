@@ -1,4 +1,3 @@
-```jsp
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <body class="app-body">
@@ -155,4 +154,3 @@
     </footer>
 
 </body>
-```
