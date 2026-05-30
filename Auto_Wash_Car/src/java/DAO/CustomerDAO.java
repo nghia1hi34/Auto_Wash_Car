@@ -5,9 +5,12 @@
 package DAO;
 
 import DBUtils.DBUtils;
+import DTO.CustomerDTO;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 /**
  *
@@ -93,6 +96,50 @@ public class CustomerDAO {
             e.printStackTrace();
         } finally {
             closeResources(null, st, cn);
+        }
+
+        return result;
+    }
+
+    /*
+     * Lay thong tin customer theo user_id dang luu trong session.
+     */
+    public CustomerDTO getCustomerByUserId(int userId) {
+        CustomerDTO result = null;
+        Connection cn = null;
+        PreparedStatement st = null;
+        ResultSet table = null;
+
+        try {
+            cn = DBUtils.getConnection();
+
+            if (cn != null) {
+                String sql = "SELECT customer_id, user_id, tier_id, points, "
+                        + "total_washes, total_spending, created_at "
+                        + "FROM Customers "
+                        + "WHERE user_id = ?";
+
+                st = cn.prepareStatement(sql);
+                st.setInt(1, userId);
+                table = st.executeQuery();
+
+                if (table.next()) {
+                    int customerId = table.getInt("customer_id");
+                    int id = table.getInt("user_id");
+                    int tierId = table.getInt("tier_id");
+                    int points = table.getInt("points");
+                    int totalWashes = table.getInt("total_washes");
+                    BigDecimal totalSpending = table.getBigDecimal("total_spending");
+                    Timestamp createdAt = table.getTimestamp("created_at");
+
+                    result = new CustomerDTO(customerId, id, tierId, points,
+                            totalWashes, totalSpending, createdAt);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(table, st, cn);
         }
 
         return result;

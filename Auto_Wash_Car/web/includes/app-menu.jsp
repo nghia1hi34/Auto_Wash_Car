@@ -5,5 +5,5 @@
     <a href="main.jsp?page=history">History</a>
     <a href="main.jsp?page=rewards">Rewards</a>
     <a href="main.jsp?page=profile">Profile</a>
-    <a href="main.jsp?page=vehicles">Vehicles</a>
+    <a href="vehicles">Vehicles</a>
 </nav>

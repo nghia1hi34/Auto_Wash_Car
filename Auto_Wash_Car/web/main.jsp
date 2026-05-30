@@ -12,6 +12,9 @@
     }
 
     String currentPage = request.getParameter("page");
+    if (currentPage == null && request.getAttribute("page") != null) {
+        currentPage = request.getAttribute("page").toString();
+    }
     String contentPage = "/usercontent/dashboard.jsp";
     String pageTitle = "Dashboard";
 

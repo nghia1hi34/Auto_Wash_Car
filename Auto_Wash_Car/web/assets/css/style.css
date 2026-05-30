@@ -153,6 +153,59 @@ h1 {
     padding: 24px;
 }
 
+.vehicle-actions{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vehicle-actions form{
+    margin: 0;
+}
+
+.edit-link,
+.delete-button,
+.cancel-edit-link{
+    display: inline-block;
+    width: auto;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+}
+
+.edit-link{
+    background-color: #0b66c3;
+    color: #ffffff;
+}
+
+.edit-link:hover{
+    background-color: #084f96;
+    text-decoration: none;
+}
+
+.delete-button{
+    background-color: #b00020;
+}
+
+.delete-button:hover{
+    background-color: #8d0019;
+}
+
+.cancel-edit-link{
+    margin-top: 10px;
+    background-color: #eef4fb;
+    color: #1f2a36;
+}
+
+.cancel-edit-link:hover{
+    background-color: #dceaf7;
+    text-decoration: none;
+}
+
 @media (max-width: 900px){
 
     .vehicle-layout{
@@ -194,6 +247,13 @@ button {
 
 button:hover {
     background-color: #084f96;
+}
+
+.vehicle-actions .delete-button {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.2;
 }
 
 .text-center {
