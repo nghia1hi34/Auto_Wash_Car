@@ -1,4 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
 <body class="app-body">
 <!--buon luon-->
     <!-- TOP HEADER -->
