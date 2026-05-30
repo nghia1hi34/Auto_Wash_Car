@@ -41,96 +41,32 @@
 
         <section class="content-box">
 
-            <h1>User Profile</h1>
+    <h1>User Profile</h1>
 
-            <div class="user-summary">
+    <div class="profile-card">
 
-                <div class="summary-card">
-                    <h3>Full Name</h3>
-                    <p>${sessionScope.LOGIN_USER.fullName}</p>
-                </div>
+        <h2>Account Information</h2>
 
-                <div class="summary-card">
-                    <h3>Email</h3>
-                    <p>${sessionScope.LOGIN_USER.email}</p>
-                </div>
+        <div class="profile-row">
+            <span>Full Name</span>
+            <span>${sessionScope.LOGIN_USER.fullName}</span>
+            <a href="changeProfile?field=fullName">Change</a>
+        </div>
 
-                <div class="summary-card">
-                    <h3>Phone</h3>
-                    <p>${sessionScope.LOGIN_USER.phone}</p>
-                </div>
+        <div class="profile-row">
+            <span>Email</span>
+            <span>${sessionScope.LOGIN_USER.email}</span>
+            <a href="changeProfile?field=email">Change</a>
+        </div>
 
-            </div>
+        <div class="profile-row">
+            <span>Phone</span>
+            <span>${sessionScope.LOGIN_USER.phone}</span>
+            <a href="changeProfile?field=phone">Change</a>
+        </div>
+    </div>
 
-            <div class="vehicle-layout">
-
-                <div class="vehicle-left">
-
-                    <h2>Account Information</h2>
-
-                    <div class="info-list">
-
-                        <p>
-                            <strong>Full Name:</strong>
-                            ${sessionScope.LOGIN_USER.fullName}
-                        </p>
-
-                        <p>
-                            <strong>Email:</strong>
-                            ${sessionScope.LOGIN_USER.email}
-                        </p>
-
-                        <p>
-                            <strong>Phone:</strong>
-                            ${sessionScope.LOGIN_USER.phone}
-                        </p>
-
-                        <p>
-                            <strong>Role:</strong>
-                            ${sessionScope.LOGIN_USER.role}
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="vehicle-right">
-
-                    <h2>Account Status</h2>
-
-                    <table class="vehicle-table">
-
-                        <tbody>
-
-                            <tr>
-                                <th>Role</th>
-                                <td>${sessionScope.LOGIN_USER.role}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Email</th>
-                                <td>${sessionScope.LOGIN_USER.email}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Phone</th>
-                                <td>${sessionScope.LOGIN_USER.phone}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Status</th>
-                                <td>Active</td>
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
+</section>
 
     </main>
 
