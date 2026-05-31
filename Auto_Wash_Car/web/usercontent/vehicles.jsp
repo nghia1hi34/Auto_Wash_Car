@@ -1,5 +1,10 @@
-```jsp
+<%@page import="java.util.ArrayList"%>
+<%@page import="DTO.VehicleDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    VehicleDTO editVehicle = (VehicleDTO) request.getAttribute("EDIT_VEHICLE");
+    boolean editMode = editVehicle != null;
+%>
 
 <body class="app-body">
 
@@ -60,7 +65,21 @@
                           method="post"
                           class="vehicle-form">
 
-                        <h2>Add Vehicle</h2>
+                        <h2><%= editMode ? "Edit Vehicle" : "Add Vehicle"%></h2>
+
+                        <input type="hidden"
+                               name="action"
+                               value="<%= editMode ? "update" : "add"%>">
+
+                        <%
+                            if (editMode) {
+                        %>
+                        <input type="hidden"
+                               name="vehicleId"
+                               value="<%= editVehicle.getVehicleId()%>">
+                        <%
+                            }
+                        %>
 
                         <div class="form-group">
                             <label>License plate</label>
@@ -68,6 +87,7 @@
                             <input type="text"
                                    name="licensePlate"
                                    placeholder="51A-123.45"
+                                   value="<%= editMode && editVehicle.getLicensePlate() != null ? editVehicle.getLicensePlate() : ""%>"
                                    required>
                         </div>
 
@@ -78,7 +98,8 @@
 
                                 <input type="text"
                                        name="brand"
-                                       placeholder="Toyota">
+                                       placeholder="Toyota"
+                                       value="<%= editMode && editVehicle.getBrand() != null ? editVehicle.getBrand() : ""%>">
                             </div>
 
                             <div class="form-group">
@@ -86,7 +107,8 @@
 
                                 <input type="text"
                                        name="model"
-                                       placeholder="Vios">
+                                       placeholder="Vios"
+                                       value="<%= editMode && editVehicle.getModel() != null ? editVehicle.getModel() : ""%>">
                             </div>
 
                         </div>
@@ -96,12 +118,23 @@
 
                             <input type="text"
                                    name="color"
-                                   placeholder="White">
+                                   placeholder="White"
+                                   value="<%= editMode && editVehicle.getColor() != null ? editVehicle.getColor() : ""%>">
                         </div>
 
                         <button type="submit">
-                            Add Vehicle
+                            <%= editMode ? "Update Vehicle" : "Add Vehicle"%>
                         </button>
+
+                        <%
+                            if (editMode) {
+                        %>
+                        <a class="cancel-edit-link" href="vehicles">
+                            Cancel edit
+                        </a>
+                        <%
+                            }
+                        %>
 
                     </form>
 
@@ -112,7 +145,7 @@
 
                     <h2>My Vehicles</h2>
 
-                    <table>
+                    <table class="vehicle-table">
 
                         <thead>
                             <tr>
@@ -120,15 +153,59 @@
                                 <th>Brand</th>
                                 <th>Model</th>
                                 <th>Color</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
 
                         <tbody>
+                            <%
+                                ArrayList<VehicleDTO> vehicles
+                                        = (ArrayList<VehicleDTO>) request.getAttribute("LIST_VEHICLES");
+
+                                if (vehicles == null || vehicles.isEmpty()) {
+                            %>
                             <tr>
-                                <td colspan="4">
-                                    Vehicle data will be shown here.
+                                <td colspan="5">
+                                    No vehicle data.
                                 </td>
                             </tr>
+                            <%
+                            } else {
+                                for (VehicleDTO vehicle : vehicles) {
+                            %>
+                            <tr>
+                                <td><%= vehicle.getLicensePlate()%></td>
+                                <td><%= vehicle.getBrand()%></td>
+                                <td><%= vehicle.getModel()%></td>
+                                <td><%= vehicle.getColor()%></td>
+                                <td>
+                                    <div class="vehicle-actions">
+                                        <a class="edit-link"
+                                           href="vehicles?editId=<%= vehicle.getVehicleId()%>">
+                                            Edit
+                                        </a>
+
+                                        <form action="vehicles"
+                                              method="post"
+                                              onsubmit="return confirm('Delete this vehicle?');">
+                                            <input type="hidden"
+                                                   name="action"
+                                                   value="delete">
+                                            <input type="hidden"
+                                                   name="vehicleId"
+                                                   value="<%= vehicle.getVehicleId()%>">
+                                            <button type="submit"
+                                                    class="delete-button">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
                         </tbody>
 
                     </table>
@@ -155,4 +232,3 @@
     </footer>
 
 </body>
-```

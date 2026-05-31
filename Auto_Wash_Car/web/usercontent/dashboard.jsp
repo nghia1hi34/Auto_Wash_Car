@@ -36,7 +36,7 @@
             <p>Check points and benefits</p>
         </a>
 
-        <a href="main.jsp?page=vehicles" class="dashboard-card">
+        <a href="vehicles" class="dashboard-card">
             <h2>My Vehicles</h2>
             <p>Manage registered vehicles</p>
         </a>
