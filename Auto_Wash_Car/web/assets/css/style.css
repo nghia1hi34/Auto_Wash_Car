@@ -1253,3 +1253,56 @@ textarea {
     color: #666;
     font-size: 13px;
 }
+/* VEHICLE DARK MODE */
+
+.dark-mode .vehicle-left,
+.dark-mode .vehicle-right{
+    background-color: #182430;
+    border-color: #2c3d4f;
+    color: #e8eef5;
+}
+
+.dark-mode .vehicle-form h2,
+.dark-mode .vehicle-right h2,
+.dark-mode .vehicle-right td,
+.dark-mode .vehicle-right th{
+    color: #e8eef5;
+}
+
+.dark-mode .vehicle-table th{
+    background-color: #253447;
+    border-color: #2c3d4f;
+}
+
+.dark-mode .vehicle-table td{
+    background-color: #182430;
+    border-color: #2c3d4f;
+}
+
+.dark-mode .cancel-edit-link{
+    background-color: #253447;
+    color: #e8eef5;
+}
+
+.dark-mode .cancel-edit-link:hover{
+    background-color: #30445c;
+}
+
+.dark-mode .empty-row{
+    color: #a9b8c8;
+}
+/*dark mode hisotry*/
+.dark-mode table{
+    color: #e8eef5;
+}
+
+.dark-mode th{
+    background-color: #253447;
+    border-color: #2c3d4f;
+    color: #e8eef5;
+}
+
+.dark-mode td{
+    background-color: #182430;
+    border-color: #2c3d4f;
+}
