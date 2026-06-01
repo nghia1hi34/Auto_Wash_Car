@@ -1,15 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <section class="content-box profile-page">
-    <div class="profile-header">
-        <div>
-            <p class="section-label">Profile management</p>
-            <h1>Edit Profile</h1>
-            <p class="form-note">Review and update user account details.</p>
+    <h1>Edit Profile</h1>
+    <p class="form-note">Review and update user account details.</p>
+
+    <div class="user-summary" style="margin-bottom: 26px;">
+        <div class="summary-card">
+            <h3>Account</h3>
+            <p style="font-size: 18px; word-break: break-word;">${empty sessionScope.LOGIN_USER.fullName ? "User" : sessionScope.LOGIN_USER.fullName}</p>
         </div>
 
-        <span class="status-badge ${sessionScope.LOGIN_USER.status ? 'is-active' : 'is-inactive'}">
-            ${sessionScope.LOGIN_USER.status ? "Active" : "Inactive"}
-        </span>
+        <div class="summary-card">
+            <h3>Email</h3>
+            <p style="font-size: 18px; word-break: break-word;">${empty sessionScope.LOGIN_USER.email ? "N/A" : sessionScope.LOGIN_USER.email}</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>Status</h3>
+            <p>${sessionScope.LOGIN_USER.status ? "Active" : "Inactive"}</p>
+        </div>
     </div>
 
     <nav class="profile-tabs" aria-label="Profile management">
@@ -19,6 +27,8 @@
     </nav>
 
     <form class="profile-form" action="#" method="post">
+        <h2>Account Information</h2>
+
         <div class="form-grid">
             <div class="form-group">
                 <label for="userId">User ID</label>

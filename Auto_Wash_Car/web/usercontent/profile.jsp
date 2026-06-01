@@ -1,15 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <section class="content-box profile-page">
-    <div class="profile-header">
-        <div>
-            <p class="section-label">User profile</p>
-            <h1>${empty sessionScope.LOGIN_USER.fullName ? "User Information" : sessionScope.LOGIN_USER.fullName}</h1>
-            <p class="form-note">Manage account information used by Auto Wash Pro.</p>
+    <h1>User Profile</h1>
+    <p class="form-note">Manage account information used by Auto Wash Pro.</p>
+
+    <div class="user-summary" style="margin-bottom: 26px;">
+        <div class="summary-card">
+            <h3>User ID</h3>
+            <p style="word-break: break-word;">${empty sessionScope.LOGIN_USER.userId ? "N/A" : sessionScope.LOGIN_USER.userId}</p>
         </div>
 
-        <span class="status-badge ${sessionScope.LOGIN_USER.status ? 'is-active' : 'is-inactive'}">
-            ${sessionScope.LOGIN_USER.status ? "Active" : "Inactive"}
-        </span>
+        <div class="summary-card">
+            <h3>Role</h3>
+            <p style="word-break: break-word;">${empty sessionScope.LOGIN_USER.role ? "Customer" : sessionScope.LOGIN_USER.role}</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>Status</h3>
+            <p>${sessionScope.LOGIN_USER.status ? "Active" : "Inactive"}</p>
+        </div>
     </div>
 
     <nav class="profile-tabs" aria-label="Profile management">
