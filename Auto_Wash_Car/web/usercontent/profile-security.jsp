@@ -1,15 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <section class="content-box profile-page">
-    <div class="profile-header">
-        <div>
-            <p class="section-label">Profile management</p>
-            <h1>Security</h1>
-            <p class="form-note">Manage password and account access information.</p>
+    <h1>Security</h1>
+    <p class="form-note">Manage password and account access information.</p>
+
+    <div class="user-summary" style="margin-bottom: 26px;">
+        <div class="summary-card">
+            <h3>Email</h3>
+            <p style="font-size: 18px; word-break: break-word;">${empty sessionScope.LOGIN_USER.email ? "N/A" : sessionScope.LOGIN_USER.email}</p>
         </div>
 
-        <span class="status-badge ${sessionScope.LOGIN_USER.status ? 'is-active' : 'is-inactive'}">
-            ${sessionScope.LOGIN_USER.status ? "Active" : "Inactive"}
-        </span>
+        <div class="summary-card">
+            <h3>Password</h3>
+            <p>Protected</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>Status</h3>
+            <p>${sessionScope.LOGIN_USER.status ? "Active" : "Inactive"}</p>
+        </div>
     </div>
 
     <nav class="profile-tabs" aria-label="Profile management">
