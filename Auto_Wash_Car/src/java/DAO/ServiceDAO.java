@@ -2,136 +2,88 @@ package DAO;
 
 import DBUtils.DBUtils;
 import DTO.ServiceDTO;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ServiceDAO {
+
     public ArrayList<ServiceDTO> getServices() {
         ArrayList<ServiceDTO> result = new ArrayList<>();
+
         Connection cn = null;
         PreparedStatement st = null;
-        ResultSet table = null;
+        ResultSet rs = null;
+
         try {
             cn = DBUtils.getConnection();
+
             if (cn != null) {
-                String sql =
-                        "SELECT service_id, service_name, "
-                        + "price, duration_minutes, status "
+
+                String sql = "SELECT service_id, service_name, price "
                         + "FROM Services "
                         + "WHERE status = 1";
+
                 st = cn.prepareStatement(sql);
-                table = st.executeQuery();
-                while (table.next()) {
-                    int serviceId =
-                            table.getInt("service_id");
-                    String serviceName =
-                            table.getString("service_name");
 
-                    BigDecimal price =
-                            table.getBigDecimal("price");
+                rs = st.executeQuery();
 
-                    int durationMinutes =
-                            table.getInt("duration_minutes");
+                while (rs.next()) {
 
-                    boolean status =
-                            table.getBoolean("status");
+                    int serviceId = rs.getInt("service_id");
+                    String serviceName = rs.getString("service_name");
+                    double price = rs.getDouble("price");
 
-                    ServiceDTO service =
-                            new ServiceDTO(
-                                    serviceId,
-                                    serviceName,
-                                    price,
-                                    durationMinutes,
-                                    status
-                            );
+                    ServiceDTO service = new ServiceDTO();
+
+                    service.setServiceId(serviceId);
+                    service.setServiceName(serviceName);
+                    service.setPrice(price);
 
                     result.add(service);
                 }
             }
+            cn.close();
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            closeResources(table, st, cn);
-        }
-
+        } 
         return result;
     }
-
-    /*
-     * Lay mot dich vu theo service_id.
-     */
     public ServiceDTO getServiceById(int serviceId) {
 
-        ServiceDTO result = null;
+    ServiceDTO service = null;
 
-        Connection cn = null;
-        PreparedStatement st = null;
-        ResultSet table = null;
+    try {
+        Connection cn = DBUtils.getConnection();
 
-        try {
+        String sql = "SELECT * FROM Services WHERE service_id=?";
 
-            cn = DBUtils.getConnection();
+        PreparedStatement st = cn.prepareStatement(sql);
 
-            if (cn != null) {
+        st.setInt(1, serviceId);
 
-                String sql =
-                        "SELECT service_id, service_name, "
-                        + "price, duration_minutes, status "
-                        + "FROM Services "
-                        + "WHERE service_id = ?";
+        ResultSet rs = st.executeQuery();
 
-                st = cn.prepareStatement(sql);
+        if(rs.next()){
 
-                st.setInt(1, serviceId);
+            service = new ServiceDTO();
 
-                table = st.executeQuery();
+            service.setServiceId(rs.getInt("service_id"));
+            service.setServiceName(rs.getString("service_name"));
+            service.setPrice(rs.getDouble("price"));
 
-                if (table.next()) {
-
-                    result =
-                            new ServiceDTO(
-                                    table.getInt("service_id"),
-                                    table.getString("service_name"),
-                                    table.getBigDecimal("price"),
-                                    table.getInt("duration_minutes"),
-                                    table.getBoolean("status")
-                            );
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(table, st, cn);
         }
 
-        return result;
+        cn.close();
+
+    } catch(Exception e){
+        e.printStackTrace();
     }
 
-    private void closeResources(ResultSet table,
-            PreparedStatement st,
-            Connection cn) {
-
-        try {
-
-            if (table != null) {
-                table.close();
-            }
-
-            if (st != null) {
-                st.close();
-            }
-
-            if (cn != null) {
-                cn.close();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    return service;
 }
+}
+
+    

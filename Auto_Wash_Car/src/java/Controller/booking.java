@@ -178,7 +178,8 @@ public class booking extends HttpServlet {
                     = loyaltyDAO.getDiscountPercent(
                             customerId);
 
-            double originalPrice = service.getPrice().doubleValue();
+            double originalPrice
+                    = service.getPrice();
 
             double discountAmount
                     = originalPrice
