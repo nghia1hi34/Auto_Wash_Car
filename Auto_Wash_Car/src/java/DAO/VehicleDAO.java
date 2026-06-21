@@ -240,11 +240,11 @@ public class VehicleDAO {
     /*
      * Ham tuong thich voi code cu neu servlet/JSP dang truyen id dang String.
      */
-//    public int updateCar(String id, String licensePlate, String brand,
-//            String model, String color) {
-//        int vehicleId = Integer.parseInt(id.trim());
-//        return updateVehicle(vehicleId, licensePlate, brand, model, color);
-//    }
+    public int updateCar(String id, String licensePlate, String brand,
+            String model, String color) {
+        int vehicleId = Integer.parseInt(id.trim());
+        return updateVehicle(vehicleId, licensePlate, brand, model, color);
+    }
 
     private void closeResources(ResultSet table, PreparedStatement st, Connection cn) {
         try {

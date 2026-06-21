@@ -652,11 +652,10 @@ th {
         font-size: 14px;
     }
 
-    .app-content{
-    margin-left:220px;   
-    padding:20px;
-    min-height:100vh;
-}
+    .app-content {
+        margin-left: 150px;
+        padding: 156px 14px 72px;
+    }
 
     .app-footer {
         left: 150px;
@@ -874,7 +873,7 @@ th {
 
     max-width: 700px;
 
-    margin: 0;
+    margin: auto;
 }
 
 /* SELECT */
@@ -1306,9 +1305,4 @@ textarea {
 .dark-mode td{
     background-color: #182430;
     border-color: #2c3d4f;
-}
-
-
-.vehicle-edit-box {
-    margin-top: 180px;
 }

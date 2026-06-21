@@ -83,7 +83,6 @@
 
                                 <input type="text"
                                        name="brand"
-                                       required=""
                                        placeholder="Toyota">
                             </div>
 
@@ -92,7 +91,6 @@
 
                                 <input type="text"
                                        name="model"
-                                       required=""
                                        placeholder="Vios">
                             </div>
 
@@ -103,7 +101,6 @@
 
                             <input type="text"
                                    name="color"
-                                   required=""
                                    placeholder="White">
                         </div>
 
