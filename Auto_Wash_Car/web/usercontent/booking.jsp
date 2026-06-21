@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.ServiceDTO"%>
+
 <% ArrayList<ServiceDTO> serviceList = (ArrayList<ServiceDTO>) request.getAttribute("serviceList"); %>
 <section class="content-box booking-box">
     <h1>Book a Car Wash</h1>
@@ -21,9 +23,7 @@
                         for (ServiceDTO service : serviceList) {
                 %>
                 <option value="<%= service.getServiceId()%>">
-                    <%= service.getServiceName()%>
-                    -
-                    <%= service.getPrice()%> VND
+                    <%= service.getServiceName()%> - <%= service.getPrice()%> VND
                 </option>
                 <%
                         }
