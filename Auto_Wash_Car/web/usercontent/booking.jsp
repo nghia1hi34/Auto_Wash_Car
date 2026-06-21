@@ -30,6 +30,7 @@
     }
 %>
 <section class="content-box booking-box">
+
     <h1>Book a Car Wash</h1>
     <p class="form-note">Schedule your next wash and confirm the price before checkout.</p>
 
@@ -100,5 +101,30 @@
         </div>
 
         <button type="submit">Confirm Booking</button>
+
     </form>
+
 </section>
+
+<script>
+    var discountPercent = <%= discountPercent %>;
+
+    function updatePrice() {
+        var select = document.getElementById('serviceSelect');
+        var option = select.options[select.selectedIndex];
+        var price = parseFloat(option.getAttribute('data-price')) || 0;
+        var discount = price * discountPercent / 100;
+        var finalPrice = price - discount;
+
+        document.getElementById('originalPrice').textContent =
+            price.toLocaleString('vi-VN') + ' VND';
+        var discountEl = document.getElementById('discountAmount');
+        if (discountEl) {
+            discountEl.textContent = discount.toLocaleString('vi-VN') + ' VND';
+        }
+        document.getElementById('finalPrice').textContent =
+            finalPrice.toLocaleString('vi-VN') + ' VND';
+    }
+
+    window.onload = updatePrice;
+</script>

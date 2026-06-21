@@ -1,10 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.VehicleDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    VehicleDTO editVehicle = (VehicleDTO) request.getAttribute("EDIT_VEHICLE");
-    boolean editMode = editVehicle != null;
-%>
 
 <body class="app-body">
 
@@ -65,21 +61,11 @@
                           method="post"
                           class="vehicle-form">
 
-                        <h2><%= editMode ? "Edit Vehicle" : "Add Vehicle"%></h2>
+                        <h2>Add Vehicle</h2>
 
                         <input type="hidden"
                                name="action"
-                               value="<%= editMode ? "update" : "add"%>">
-
-                        <%
-                            if (editMode) {
-                        %>
-                        <input type="hidden"
-                               name="vehicleId"
-                               value="<%= editVehicle.getVehicleId()%>">
-                        <%
-                            }
-                        %>
+                               value="add">
 
                         <div class="form-group">
                             <label>License plate</label>
@@ -87,7 +73,6 @@
                             <input type="text"
                                    name="licensePlate"
                                    placeholder="51A-123.45"
-                                   value="<%= editMode && editVehicle.getLicensePlate() != null ? editVehicle.getLicensePlate() : ""%>"
                                    required>
                         </div>
 
@@ -98,8 +83,7 @@
 
                                 <input type="text"
                                        name="brand"
-                                       placeholder="Toyota"
-                                       value="<%= editMode && editVehicle.getBrand() != null ? editVehicle.getBrand() : ""%>">
+                                       placeholder="Toyota">
                             </div>
 
                             <div class="form-group">
@@ -107,8 +91,7 @@
 
                                 <input type="text"
                                        name="model"
-                                       placeholder="Vios"
-                                       value="<%= editMode && editVehicle.getModel() != null ? editVehicle.getModel() : ""%>">
+                                       placeholder="Vios">
                             </div>
 
                         </div>
@@ -118,23 +101,12 @@
 
                             <input type="text"
                                    name="color"
-                                   placeholder="White"
-                                   value="<%= editMode && editVehicle.getColor() != null ? editVehicle.getColor() : ""%>">
+                                   placeholder="White">
                         </div>
 
                         <button type="submit">
-                            <%= editMode ? "Update Vehicle" : "Add Vehicle"%>
+                            Add Vehicle
                         </button>
-
-                        <%
-                            if (editMode) {
-                        %>
-                        <a class="cancel-edit-link" href="vehicles">
-                            Cancel edit
-                        </a>
-                        <%
-                            }
-                        %>
 
                     </form>
 
@@ -173,17 +145,17 @@
                             } else {
                                 for (VehicleDTO vehicle : vehicles) {
                             %>
-                            <tr>
-                                <td><%= vehicle.getLicensePlate()%></td>
-                                <td><%= vehicle.getBrand()%></td>
-                                <td><%= vehicle.getModel()%></td>
-                                <td><%= vehicle.getColor()%></td>
-                                <td>
-                                    <div class="vehicle-actions">
-                                        <a class="edit-link"
-                                           href="vehicles?editId=<%= vehicle.getVehicleId()%>">
-                                            Edit
-                                        </a>
+                    <tr>
+                        <td><%= vehicle.getLicensePlate()%></td>
+                        <td><%= vehicle.getBrand()%></td>
+                        <td><%= vehicle.getModel()%></td>
+                        <td><%= vehicle.getColor()%></td>
+                        <td>
+                            <div class="vehicle-actions">
+                                <a class="edit-link"
+                                   href="vehicle-edit?vehicleId=<%= vehicle.getVehicleId()%>">
+                                    Edit
+                                </a>
 
                                         <form action="vehicles"
                                               method="post"

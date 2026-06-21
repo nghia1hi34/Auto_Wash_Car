@@ -39,6 +39,9 @@
     } else if ("vehicles".equals(currentPage)) {
         contentPage = "/usercontent/vehicles.jsp";
         pageTitle = "Vehicles";
+    } else if ("vehicle-edit".equals(currentPage)) {
+        contentPage = "/usercontent/vehicle-edit.jsp";
+        pageTitle = "Edit Vehicle";
     } else {
         currentPage = "dashboard";
     }
