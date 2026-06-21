@@ -7,23 +7,21 @@ public class ServiceDTO implements Serializable {
 
     private int serviceId;
     private String serviceName;
-    private String description;
     private BigDecimal price;
-    private int duration;
+    private int durationMinutes;
     private boolean status;
 
     public ServiceDTO() {
     }
 
     public ServiceDTO(int serviceId, String serviceName,
-            String description, BigDecimal price,
-            int duration, boolean status) {
+            BigDecimal price, int durationMinutes,
+            boolean status) {
 
         this.serviceId = serviceId;
         this.serviceName = serviceName;
-        this.description = description;
         this.price = price;
-        this.duration = duration;
+        this.durationMinutes = durationMinutes;
         this.status = status;
     }
 
@@ -43,14 +41,6 @@ public class ServiceDTO implements Serializable {
         this.serviceName = serviceName;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -59,12 +49,12 @@ public class ServiceDTO implements Serializable {
         this.price = price;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDurationMinutes() {
+        return durationMinutes;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setDurationMinutes(int durationMinutes) {
+        this.durationMinutes = durationMinutes;
     }
 
     public boolean isStatus() {

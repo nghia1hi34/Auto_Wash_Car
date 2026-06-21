@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DAO.ServiceDAO"%>
 <%
     /*
      * Security note:
@@ -17,11 +18,13 @@
     }
     String contentPage = "/usercontent/dashboard.jsp";
     String pageTitle = "Dashboard";
-
-    if ("booking".equals(currentPage)) {
+/*phan moi duoc sua*/
+   if ("booking".equals(currentPage)) {
+        ServiceDAO dao = new ServiceDAO();
+        request.setAttribute("serviceList",dao.getServices());
         contentPage = "/usercontent/booking.jsp";
         pageTitle = "Booking";
-    } else if ("history".equals(currentPage)) {
+} else if ("history".equals(currentPage)) {
         contentPage = "/usercontent/history.jsp";
         pageTitle = "History";
     } else if ("rewards".equals(currentPage)) {
