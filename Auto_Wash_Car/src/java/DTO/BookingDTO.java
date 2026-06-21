@@ -9,7 +9,7 @@ package DTO;
  * @author ADMIN
  */
 public class BookingDTO {
-     private int bookingId;
+    private int bookingId;
     private int customerId;
     private int vehicleId;
     private int serviceId;
@@ -17,9 +17,11 @@ public class BookingDTO {
     private double originalPrice;
     private double finalPrice;
     private double discountPercent;
-private double discountAmount;
+    private double discountAmount;
     private String note;
-    
+    private String status;
+    private String vehicleName;
+    private String serviceName;
 
     public BookingDTO() {
     }
@@ -118,6 +120,28 @@ private double discountAmount;
     public void setDiscountAmount(double discountAmount) {
         this.discountAmount = discountAmount;
     }
-    
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getVehicleName() {
+        return vehicleName;
+    }
+
+    public void setVehicleName(String vehicleName) {
+        this.vehicleName = vehicleName;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 }

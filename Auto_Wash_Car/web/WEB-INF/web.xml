@@ -8,6 +8,14 @@
         <servlet-name>booking</servlet-name>
         <url-pattern>/booking</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>history</servlet-name>
+        <servlet-class>Controller.history</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>history</servlet-name>
+        <url-pattern>/history</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

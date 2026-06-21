@@ -93,13 +93,12 @@ public class booking extends HttpServlet {
                 = loyaltyDAO.getDiscountPercent(
                         customer.getCustomerId());
 
-        request.setAttribute(
-                "DISCOUNT_PERCENT",
-                discountPercent);
+        request.setAttribute("DISCOUNT_PERCENT", discountPercent);
         request.setAttribute("VEHICLE_LIST", vehicles);
         request.setAttribute("SERVICE_LIST", services);
+        request.setAttribute("page", "booking");
 
-        request.getRequestDispatcher("booking.jsp")
+        request.getRequestDispatcher("main.jsp")
                 .forward(request, response);
     }
 
@@ -221,18 +220,12 @@ public class booking extends HttpServlet {
                     = dao.createBooking(booking);
 
             if (result > 0) {
-
-                request.getSession().setAttribute("FINAL_PRICE",finalPrice);
-
+                request.getSession().setAttribute("BOOKING_SUCCESS", "Booking confirmed successfully!");
             } else {
-
-                request.getSession()
-                        .setAttribute(
-                                "ERROR",
-                                "Booking failed!");
+                request.getSession().setAttribute("ERROR", "Booking failed!");
             }
 
-            request.getRequestDispatcher("bookinghistory.jsp").forward(request, response);
+            response.sendRedirect("history");
 
         } catch (Exception e) {
 
