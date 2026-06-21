@@ -4,7 +4,7 @@
     VehicleDTO vehicle = (VehicleDTO) request.getAttribute("EDIT_VEHICLE");
 %>
 
-<section class="content-box booking-box vehicle-edit-box">
+<section class="content-box booking-box">
     <h1>Edit Vehicle</h1>
 
     <p class="error-message">
@@ -34,8 +34,8 @@
 
             <input type="text"
                    name="licensePlate"
-                   required=""
-                   value="<%= vehicle.getLicensePlate() == null ? "" : vehicle.getLicensePlate()%>"\>
+                   value="<%= vehicle.getLicensePlate() == null ? "" : vehicle.getLicensePlate()%>"
+                   required>
         </div>
 
         <div class="form-grid">
@@ -44,9 +44,7 @@
 
                 <input type="text"
                        name="brand"
-                       required=""
                        value="<%= vehicle.getBrand() == null ? "" : vehicle.getBrand()%>">
-                       
             </div>
 
             <div class="form-group">
@@ -54,7 +52,6 @@
 
                 <input type="text"
                        name="model"
-                       required=""
                        value="<%= vehicle.getModel() == null ? "" : vehicle.getModel()%>">
             </div>
         </div>
@@ -64,7 +61,6 @@
 
             <input type="text"
                    name="color"
-                   required=""
                    value="<%= vehicle.getColor() == null ? "" : vehicle.getColor()%>">
         </div>
 
