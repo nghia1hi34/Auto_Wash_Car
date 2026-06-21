@@ -10,6 +10,6 @@
     <a href="login.jsp">Login</a>
     <a href="register.jsp">Register</a>
     <a href="menuusers/history.jsp">History</a>
-    <a href="menuusers/booking.jsp">Booking</a>
+    <a href="booking">Booking</a>
     <a href="menuusers/rewards.jsp">Rewards</a> 
 </div>

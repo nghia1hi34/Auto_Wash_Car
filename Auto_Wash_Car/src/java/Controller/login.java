@@ -37,6 +37,19 @@ public class login extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
+            if (email != null) {
+                email = email.trim();
+            }
+            if (password != null) {
+                password = password.trim();
+            }
+
+            if (email == null || email.length() == 0 || password == null || password.length() == 0) {
+                request.setAttribute("ERROR", "Please enter email and password.");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
+            }
+
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLogin(email, password);
 
@@ -44,23 +57,35 @@ public class login extends HttpServlet {
                 // Sai email/password hoac tai khoan khong ton tai.
                 request.setAttribute("ERROR", "Email or password is invalid.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
             } else {
                 if (user.isStatus()) {
-                    // Luu user vao session de cac trang khac tai su dung.
-                    request.getSession().setAttribute("LOGIN_USER", user);
+                    // Tao session moi de tranh session fixation va luu user vao session.
+                    request.getSession().invalidate();
+                    request.getSession(true).setAttribute("LOGIN_USER", user);
 
-                    // Dang nhap thanh cong thi chuyen den layout chinh cua user.
-                    response.sendRedirect("main.jsp?page=dashboard");
+                    String target = resolveLandingPage(user.getRole());
+                    if (target == null) {
+                        request.getSession().invalidate();
+                        request.setAttribute("ERROR", "Your account role is not supported.");
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                        return;
+                    }
+
+                    response.sendRedirect(request.getContextPath() + target);
+                    return;
                 } else {
                     // Tai khoan ton tai nhung da bi khoa.
                     request.setAttribute("ERROR", "Access denied. Your account is inactive.");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
+                    return;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("ERROR", "System error. Please try again later.");
             request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
         }
     }
 
@@ -80,7 +105,7 @@ public class login extends HttpServlet {
          * Neu nguoi dung go truc tiep /login bang GET,
          * chi can mo trang login.jsp, khong xu ly dang nhap.
          */
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
 
     /**
@@ -106,5 +131,21 @@ public class login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String resolveLandingPage(String role) {
+        if (role == null) {
+            return null;
+        }
+
+        if ("ADMIN".equalsIgnoreCase(role)) {
+            return "/admin.jsp";
+        }
+
+        if ("CUSTOMER".equalsIgnoreCase(role)) {
+            return "/main.jsp?page=dashboard";
+        }
+
+        return null;
+    }
 
 }

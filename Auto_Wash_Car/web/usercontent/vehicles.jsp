@@ -31,11 +31,11 @@
     <!-- LEFT MENU -->
     <aside class="app-menu">
 
-        <a href="dashboard.jsp">Dashboard</a>
+        <a href="main.jsp?page=dashboard">Dashboard</a>
 
         <a href="vehicles.jsp">Vehicles</a>
 
-        <a href="booking.jsp">Booking</a>
+        <a href="booking">Booking</a>
 
         <a href="history.jsp">History</a>
 

@@ -21,7 +21,7 @@
                 <p class="error-message">${requestScope.ERROR}</p>
                 <p class="success-message">${requestScope.SUCCESS}</p>
 
-                <form action="login" method="post">
+                <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
