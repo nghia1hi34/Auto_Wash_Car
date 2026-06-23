@@ -20,7 +20,7 @@ public class history extends HttpServlet {
 
         UserDTO user = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
         if (user == null) {
-            response.sendRedirect("MainController?action=loginPage");
+            response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
             return;
         }
 

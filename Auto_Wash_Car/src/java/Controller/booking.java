@@ -34,7 +34,7 @@ public class booking extends HttpServlet {
 
         UserDTO loginUser = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
         if (loginUser == null) {
-            response.sendRedirect("MainController?action=loginPage");
+            response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
             return;
         }
 

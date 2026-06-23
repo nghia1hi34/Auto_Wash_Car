@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DTO.UserDTO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,8 +50,13 @@ public class MainController extends HttpServlet {
                     url = "register.jsp";
                     break;
                 case "dashboard":
-                    request.setAttribute("page", "dashboard");
-                    url = "main.jsp";
+                    UserDTO loginUser = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
+                    if (loginUser != null && "ADMIN".equalsIgnoreCase(loginUser.getRole())) {
+                        url = "admin.jsp";
+                    } else {
+                        request.setAttribute("page", "dashboard");
+                        url = "main.jsp";
+                    }
                     break;
                 case "booking":
                     url = "booking";

@@ -40,7 +40,7 @@
     <form action="${pageContext.request.contextPath}/booking" method="post">
         <div class="form-group">
             <label>Select Vehicle</label>
-            <select name="vehicleId" required>
+            <select id="vehicleSelect" name="vehicleId" required>
                 <%
                     for (VehicleDTO vehicle : vehicles) {
                         String value = String.valueOf(vehicle.getVehicleId());
@@ -62,13 +62,13 @@
 
         <div class="form-group">
             <label>Select Service</label>
-            <select name="serviceId" required>
+            <select id="serviceSelect" name="serviceId" required>
                 <%
                     for (ServiceDTO service : services) {
                         String value = String.valueOf(service.getServiceId());
                         String selected = value.equals(selectedServiceId) ? "selected" : "";
                 %>
-                <option value="<%= value %>" <%= selected %>>
+                <option value="<%= value %>" data-price="<%= service.getPrice() %>" <%= selected %>>
                     <%= service.getServiceName() %> - <%= service.getPrice() %> VND
                 </option>
                 <%
@@ -95,9 +95,9 @@
         <div class="booking-summary">
             <h2>Booking Summary</h2>
             <p>Tier discount: <%= discountPercent == null ? 0 : discountPercent %>%</p>
-            <p>Original Price: <%= originalPrice == null ? "N/A" : originalPrice %> VND</p>
-            <p>Discount: <%= discountAmount == null ? "N/A" : discountAmount %> VND</p>
-            <p class="final-price">Final Price: <%= finalPrice == null ? "N/A" : finalPrice %> VND</p>
+            <p>Original Price: <span id="originalPrice"><%= originalPrice == null ? "N/A" : originalPrice %></span> VND</p>
+            <p>Discount: <span id="discountAmount"><%= discountAmount == null ? "N/A" : discountAmount %></span> VND</p>
+            <p class="final-price">Final Price: <span id="finalPrice"><%= finalPrice == null ? "N/A" : finalPrice %></span> VND</p>
         </div>
 
         <button type="submit">Confirm Booking</button>
@@ -107,24 +107,33 @@
 </section>
 
 <script>
-    var discountPercent = <%= discountPercent %>;
+    var discountPercent = <%= discountPercent == null ? 0 : discountPercent.intValue() %>;
 
     function updatePrice() {
         var select = document.getElementById('serviceSelect');
+        var originalPriceEl = document.getElementById('originalPrice');
+        var discountEl = document.getElementById('discountAmount');
+        var finalPriceEl = document.getElementById('finalPrice');
+
+        if (!select || !originalPriceEl || !discountEl || !finalPriceEl || select.options.length === 0) {
+            return;
+        }
+
         var option = select.options[select.selectedIndex];
         var price = parseFloat(option.getAttribute('data-price')) || 0;
         var discount = price * discountPercent / 100;
         var finalPrice = price - discount;
 
-        document.getElementById('originalPrice').textContent =
-            price.toLocaleString('vi-VN') + ' VND';
-        var discountEl = document.getElementById('discountAmount');
-        if (discountEl) {
-            discountEl.textContent = discount.toLocaleString('vi-VN') + ' VND';
-        }
-        document.getElementById('finalPrice').textContent =
-            finalPrice.toLocaleString('vi-VN') + ' VND';
+        originalPriceEl.textContent = price.toLocaleString('vi-VN');
+        discountEl.textContent = discount.toLocaleString('vi-VN');
+        finalPriceEl.textContent = finalPrice.toLocaleString('vi-VN');
     }
 
-    window.onload = updatePrice;
+    document.addEventListener('DOMContentLoaded', function () {
+        var select = document.getElementById('serviceSelect');
+        if (select) {
+            select.addEventListener('change', updatePrice);
+        }
+        updatePrice();
+    });
 </script>

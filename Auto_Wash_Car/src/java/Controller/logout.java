@@ -31,10 +31,10 @@ public class logout extends HttpServlet {
 
         try {
             request.getSession().invalidate();
-            response.sendRedirect("MainController?action=loginPage");
+            response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("MainController?action=loginPage");
+            response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
         }
     }
 

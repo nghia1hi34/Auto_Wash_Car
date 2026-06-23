@@ -64,7 +64,7 @@
                 </form>
 
                 <p class="text-center">
-                    <a href="MainController?action=loginPage">Already have an account?</a>
+                    <a href="${pageContext.request.contextPath}/MainController?action=loginPage">Already have an account?</a>
                 </p>
             </section>
         </main>

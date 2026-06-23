@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if (session.getAttribute("LOGIN_USER") == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
         return;
     }
 
     DTO.UserDTO loginUser = (DTO.UserDTO) session.getAttribute("LOGIN_USER");
     if (loginUser == null || !"ADMIN".equalsIgnoreCase(loginUser.getRole())) {
-        response.sendRedirect(request.getContextPath() + "/main.jsp?page=dashboard");
+        response.sendRedirect(request.getContextPath() + "/MainController?action=dashboard");
         return;
     }
 %>
@@ -45,22 +45,22 @@
                 </div>
 
                 <div class="dashboard-grid">
-                    <a href="main.jsp?page=booking" class="dashboard-card">
+                    <a href="${pageContext.request.contextPath}/MainController?action=booking" class="dashboard-card">
                         <h2>Review Bookings</h2>
                         <p>Monitor customer purchase requests</p>
                     </a>
 
-                    <a href="vehicles" class="dashboard-card">
+                    <a href="${pageContext.request.contextPath}/vehicles" class="dashboard-card">
                         <h2>Vehicles</h2>
                         <p>Inspect customer vehicle records</p>
                     </a>
 
-                    <a href="main.jsp?page=history" class="dashboard-card">
+                    <a href="${pageContext.request.contextPath}/MainController?action=history" class="dashboard-card">
                         <h2>History</h2>
                         <p>Review wash history records</p>
                     </a>
 
-                    <a href="logout" class="dashboard-card">
+                    <a href="${pageContext.request.contextPath}/MainController?action=logout" class="dashboard-card">
                         <h2>Logout</h2>
                         <p>End admin session</p>
                     </a>
