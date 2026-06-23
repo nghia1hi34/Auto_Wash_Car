@@ -40,6 +40,7 @@
             <a href="MainController?action=booking" style="color:#3182ce;">Book your first car wash &rarr;</a>
         </div>
     <% } else { %>
+    <div class="history-container TEST">
         <table class="history-table">
             <thead>
                 <tr>
@@ -72,6 +73,7 @@
                 <% } %>
             </tbody>
         </table>
+    </div>
     <% } %>
 
 </section>

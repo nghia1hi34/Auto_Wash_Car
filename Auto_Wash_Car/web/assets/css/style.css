@@ -1024,8 +1024,10 @@ option {
 .app-content {
     min-height: calc(100vh - 116px);
     margin-left: 220px;
+    width: calc(100% - 220px);
     padding: 96px 28px 72px;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 .app-footer {
@@ -1305,4 +1307,31 @@ textarea {
 .dark-mode td{
     background-color: #182430;
     border-color: #2c3d4f;
+}
+
+/* HISTORY PAGE FIX */
+
+.history-container{
+    width:100%;
+    overflow-x:auto;
+    width: 88%;
+    padding-left: 12%;
+}
+
+.history-table{
+    width:88%;
+    min-width:900px;
+    table-layout:fixed;
+    padding-left: 12%;
+}
+
+.history-table td,
+.history-table th{
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+}
+
+.TEST {
+    width: 88%;
+    padding-left: 12%;
 }
