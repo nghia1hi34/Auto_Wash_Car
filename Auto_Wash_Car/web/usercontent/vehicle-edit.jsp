@@ -19,7 +19,7 @@
     </p>
 
     <p class="text-center">
-        <a href="vehicles">Back to Vehicles</a>
+        <a href="MainController?action=vehicles">Back to Vehicles</a>
     </p>
     <%
     } else {
@@ -69,7 +69,7 @@
         </button>
 
         <p class="text-center">
-            <a href="vehicles">Cancel</a>
+            <a href="MainController?action=vehicles">Cancel</a>
         </p>
     </form>
     <%

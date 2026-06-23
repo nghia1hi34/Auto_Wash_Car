@@ -7,7 +7,7 @@
      *   chuyen ve login.jsp de tranh bypass man hinh dang nhap.
      */
     if (session.getAttribute("LOGIN_USER") == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect("MainController?action=loginPage");
         return;
     }
 

@@ -4,12 +4,12 @@
     Author     : Khoa
 --%>
 <div class="menu">  
-    <a href="home.jsp">Home</a>
-    <a href="menuusers/profile.jsp">Profile</a>
-    <a href="menuusers/vehicles.jsp">Vehicles</a>
-    <a href="login.jsp">Login</a>
-    <a href="register.jsp">Register</a>
-    <a href="menuusers/history.jsp">History</a>
-    <a href="booking">Booking</a>
-    <a href="menuusers/rewards.jsp">Rewards</a> 
+    <a href="MainController?action=dashboard">Home</a>
+    <a href="MainController?action=profile">Profile</a>
+    <a href="MainController?action=vehicles">Vehicles</a>
+    <a href="MainController?action=loginPage">Login</a>
+    <a href="MainController?action=registerPage">Register</a>
+    <a href="MainController?action=history">History</a>
+    <a href="MainController?action=booking">Booking</a>
+    <a href="MainController?action=rewards">Rewards</a> 
 </div>

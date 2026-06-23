@@ -21,9 +21,9 @@
     </div>
 
     <nav class="profile-tabs" aria-label="Profile management">
-        <a class="active" href="main.jsp?page=profile">Overview</a>
-        <a href="main.jsp?page=profile-edit">Edit Profile</a>
-        <a href="main.jsp?page=profile-security">Security</a>
+        <a class="active" href="MainController?action=profile">Overview</a>
+        <a href="MainController?action=profileEdit">Edit Profile</a>
+        <a href="MainController?action=profileSecurity">Security</a>
     </nav>
 
     <div class="profile-overview">
@@ -36,8 +36,8 @@
             <p>${empty sessionScope.LOGIN_USER.email ? "No email provided" : sessionScope.LOGIN_USER.email}</p>
 
             <div class="profile-actions">
-                <a class="button-link" href="main.jsp?page=profile-edit">Edit Information</a>
-                <a class="button-link secondary" href="main.jsp?page=profile-security">Security</a>
+                <a class="button-link" href="MainController?action=profileEdit">Edit Information</a>
+                <a class="button-link secondary" href="MainController?action=profileSecurity">Security</a>
             </div>
         </aside>
 

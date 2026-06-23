@@ -21,9 +21,9 @@
     </div>
 
     <nav class="profile-tabs" aria-label="Profile management">
-        <a href="main.jsp?page=profile">Overview</a>
-        <a class="active" href="main.jsp?page=profile-edit">Edit Profile</a>
-        <a href="main.jsp?page=profile-security">Security</a>
+        <a href="MainController?action=profile">Overview</a>
+        <a class="active" href="MainController?action=profileEdit">Edit Profile</a>
+        <a href="MainController?action=profileSecurity">Security</a>
     </nav>
 
     <form class="profile-form" action="#" method="post">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="profile-form-actions">
-            <a class="button-link secondary" href="main.jsp?page=profile">Cancel</a>
+            <a class="button-link secondary" href="MainController?action=profile">Cancel</a>
             <button type="button">Save Changes</button>
         </div>
     </form>

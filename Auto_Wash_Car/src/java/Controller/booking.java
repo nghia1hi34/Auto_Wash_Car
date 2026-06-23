@@ -27,12 +27,40 @@ public class booking extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        try {
-            UserDTO loginUser = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
-            if (loginUser == null) {
-                response.sendRedirect(request.getContextPath() + "/login.jsp");
-                return;
-            }
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        UserDTO user = (UserDTO) request.getSession()
+                .getAttribute("LOGIN_USER");
+        if (user == null) {
+            response.sendRedirect("MainController?action=loginPage");
+            return;
+        }
+        CustomerDAO customerDAO = new CustomerDAO();
+        CustomerDTO customer
+                = customerDAO.getCustomerByUserId(
+                        user.getUserId());
+
+        VehicleDAO vehicleDAO = new VehicleDAO();
+        ArrayList<VehicleDTO> vehicles
+                = vehicleDAO.getVehicles(
+                        customer.getCustomerId());
+
+        ServiceDAO serviceDAO = new ServiceDAO();
+        ArrayList<ServiceDTO> services
+                = serviceDAO.getServices();
+        LoyaltyDAO loyaltyDAO = new LoyaltyDAO();
 
             CustomerDAO customerDAO = new CustomerDAO();
             CustomerDTO customer = customerDAO.getCustomerByUserId(loginUser.getUserId());
@@ -71,17 +99,20 @@ public class booking extends HttpServlet {
             Integer vehicleId = parseInt(vehicleIdText);
             Integer serviceId = parseInt(serviceIdText);
 
-            if (note != null) {
-                note = note.trim();
+            if (user == null) {
+                response.sendRedirect("MainController?action=loginPage");
+                return;
             }
 
-            if (vehicleId == null || serviceId == null
-                    || bookingTimeText == null || bookingTimeText.trim().length() == 0) {
-                request.setAttribute("ERROR", "Please select a vehicle, service, and booking time.");
-                preserveSelection(request, vehicleIdText, serviceIdText, bookingTimeText, note);
-                loadPageData(request, customer.getUserId(), customer.getCustomerId());
-                request.setAttribute("page", "booking");
-                request.getRequestDispatcher("main.jsp").forward(request, response);
+            CustomerDAO customerDAO
+                    = new CustomerDAO();
+
+            CustomerDTO customer
+                    = customerDAO.getCustomerByUserId(
+                            user.getUserId());
+
+            if (customer == null) {
+            response.sendRedirect("MainController?action=booking");
                 return;
             }
 
@@ -243,30 +274,8 @@ public class booking extends HttpServlet {
         return result;
     }
 
-    private void preserveSelection(HttpServletRequest request, String vehicleId,
-            String serviceId, String bookingTime, String note) {
-        if (vehicleId != null) {
-            request.setAttribute("SELECTED_VEHICLE_ID", vehicleId);
-        }
-        if (serviceId != null) {
-            request.setAttribute("SELECTED_SERVICE_ID", serviceId);
-        }
-        if (bookingTime != null) {
-            request.setAttribute("BOOKING_TIME", bookingTime);
-        }
-        if (note != null) {
-            request.setAttribute("NOTE", note);
-        }
-    }
-
-    private Integer parseInt(String value) {
-        try {
-            if (value == null || value.trim().length() == 0) {
-                return null;
-            }
-            return Integer.valueOf(value.trim());
-        } catch (Exception e) {
-            return null;
+            response.sendRedirect(
+                    "MainController?action=booking");
         }
     }
 
@@ -276,9 +285,4 @@ public class booking extends HttpServlet {
         processRequest(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
 }

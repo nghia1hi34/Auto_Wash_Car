@@ -64,16 +64,8 @@ public class login extends HttpServlet {
                     request.getSession().invalidate();
                     request.getSession(true).setAttribute("LOGIN_USER", user);
 
-                    String target = resolveLandingPage(user.getRole());
-                    if (target == null) {
-                        request.getSession().invalidate();
-                        request.setAttribute("ERROR", "Your account role is not supported.");
-                        request.getRequestDispatcher("login.jsp").forward(request, response);
-                        return;
-                    }
-
-                    response.sendRedirect(request.getContextPath() + target);
-                    return;
+                    // Dang nhap thanh cong thi chuyen den layout chinh cua user.
+                    response.sendRedirect("MainController?action=dashboard");
                 } else {
                     // Tai khoan ton tai nhung da bi khoa.
                     request.setAttribute("ERROR", "Access denied. Your account is inactive.");
@@ -105,7 +97,7 @@ public class login extends HttpServlet {
          * Neu nguoi dung go truc tiep /login bang GET,
          * chi can mo trang login.jsp, khong xu ly dang nhap.
          */
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect("MainController?action=loginPage");
     }
 
     /**
