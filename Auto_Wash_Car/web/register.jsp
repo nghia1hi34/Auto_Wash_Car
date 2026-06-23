@@ -22,7 +22,7 @@
                 <p class="error-message">${requestScope.ERROR}</p>
                 <p class="success-message">${requestScope.SUCCESS}</p>
 
-                <form action="register" method="post">
+                <form action="${pageContext.request.contextPath}/register" method="post">
                     <%--
                         Users table:
                         full_name, email, password, role, phone.
