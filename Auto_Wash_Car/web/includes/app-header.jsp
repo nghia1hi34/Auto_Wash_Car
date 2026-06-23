@@ -14,6 +14,6 @@
             Dark
         </button>
 
-        <a class="logout-link" href="logout">Logout</a>
+        <a class="logout-link" href="${pageContext.request.contextPath}/MainController?action=logout">Logout</a>
     </div>
 </header>

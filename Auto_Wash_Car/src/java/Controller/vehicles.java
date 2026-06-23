@@ -32,7 +32,7 @@ public class vehicles extends HttpServlet {
             UserDTO loginUser = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
 
             if (loginUser == null) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
                 return;
             }
 
@@ -49,17 +49,17 @@ public class vehicles extends HttpServlet {
             VehicleDAO vehicleDAO = new VehicleDAO();
 
             if ("POST".equalsIgnoreCase(request.getMethod())) {
-                String action = request.getParameter("action");
+                String action = request.getParameter("vehicleAction");
 
-                if ("update".equals(action)) {
-                    updateVehicle(request, customer.getCustomerId());
-                } else if ("delete".equals(action)) {
+                if (action == null) {
+                    action = request.getParameter("action");
+                }
+
+                if ("delete".equals(action)) {
                     deleteVehicle(request, customer.getCustomerId());
-                } else {
+                } else if ("add".equals(action)) {
                     addVehicle(request, customer.getCustomerId());
                 }
-            } else {
-                loadEditVehicle(request, vehicleDAO, customer.getCustomerId());
             }
 
             ArrayList<VehicleDTO> vehicles = vehicleDAO.getVehicles(customer.getCustomerId());
@@ -120,40 +120,6 @@ public class vehicles extends HttpServlet {
         }
     }
 
-    private void updateVehicle(HttpServletRequest request, int customerId) {
-        try {
-            String vehicleIdText = request.getParameter("vehicleId");
-            String licensePlate = trim(request.getParameter("licensePlate"));
-            String brand = trim(request.getParameter("brand"));
-            String model = trim(request.getParameter("model"));
-            String color = trim(request.getParameter("color"));
-
-            if (vehicleIdText == null || vehicleIdText.trim().length() == 0) {
-                request.setAttribute("ERROR", "Vehicle id is required.");
-                return;
-            }
-
-            if (licensePlate == null || licensePlate.length() == 0) {
-                request.setAttribute("ERROR", "License plate is required.");
-                return;
-            }
-
-            int vehicleId = Integer.parseInt(vehicleIdText.trim());
-            VehicleDAO vehicleDAO = new VehicleDAO();
-            int rows = vehicleDAO.updateVehicle(vehicleId, customerId,
-                    licensePlate, brand, model, color);
-
-            if (rows > 0) {
-                request.setAttribute("SUCCESS", "Vehicle updated successfully.");
-            } else {
-                request.setAttribute("ERROR", "Cannot update vehicle.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("ERROR", "Cannot update vehicle. License plate may already exist.");
-        }
-    }
-
     private void deleteVehicle(HttpServletRequest request, int customerId) {
         try {
             String vehicleIdText = request.getParameter("vehicleId");
@@ -178,28 +144,6 @@ public class vehicles extends HttpServlet {
         }
     }
 
-    private void loadEditVehicle(HttpServletRequest request, VehicleDAO vehicleDAO,
-            int customerId) {
-        try {
-            String editIdText = request.getParameter("editId");
-
-            if (editIdText == null || editIdText.trim().length() == 0) {
-                return;
-            }
-
-            int vehicleId = Integer.parseInt(editIdText.trim());
-            VehicleDTO editVehicle = vehicleDAO.getVehicleById(vehicleId, customerId);
-
-            if (editVehicle == null) {
-                request.setAttribute("ERROR", "Vehicle was not found.");
-            } else {
-                request.setAttribute("EDIT_VEHICLE", editVehicle);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("ERROR", "Cannot load vehicle for editing.");
-        }
-    }
 
     private String trim(String value) {
         if (value == null) {

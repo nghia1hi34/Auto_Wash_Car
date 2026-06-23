@@ -23,8 +23,7 @@ public class logout extends HttpServlet {
      * Luu y:
      * - Khi login thanh cong, user duoc luu trong session voi key "LOGIN_USER".
      * - invalidate() se xoa toan bo session hien tai, bao gom LOGIN_USER.
-     * - Sau khi logout, chuyen ve index.html.
-     * - index.html hien dang redirect sang login.jsp.
+     * - Sau khi logout, chuyen ve MainController de mo lai trang login.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,10 +31,10 @@ public class logout extends HttpServlet {
 
         try {
             request.getSession().invalidate();
-            response.sendRedirect("index.html");
+            response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("index.html");
+            response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
         }
     }
 

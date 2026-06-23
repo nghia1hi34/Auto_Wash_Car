@@ -1,43 +1,139 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<section class="content-box booking-box">
-    <h1>Book a Car Wash</h1>
-    <p class="form-note">Schedule your next premium wash.</p>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="DTO.VehicleDTO"%>
+<%@page import="DTO.ServiceDTO"%>
+<%
+    ArrayList<VehicleDTO> vehicles = (ArrayList<VehicleDTO>) request.getAttribute("LIST_VEHICLES");
+    ArrayList<ServiceDTO> services = (ArrayList<ServiceDTO>) request.getAttribute("LIST_SERVICES");
+    String selectedVehicleId = (String) request.getAttribute("SELECTED_VEHICLE_ID");
+    String selectedServiceId = (String) request.getAttribute("SELECTED_SERVICE_ID");
+    String bookingTime = (String) request.getAttribute("BOOKING_TIME");
+    String note = (String) request.getAttribute("NOTE");
+    BigDecimal originalPrice = (BigDecimal) request.getAttribute("ORIGINAL_PRICE");
+    BigDecimal discountAmount = (BigDecimal) request.getAttribute("DISCOUNT_AMOUNT");
+    BigDecimal finalPrice = (BigDecimal) request.getAttribute("FINAL_PRICE");
+    Integer discountPercent = (Integer) request.getAttribute("DISCOUNT_PERCENT");
 
-    <form action="booking" method="post">
+    if (vehicles == null) {
+        vehicles = new ArrayList<>();
+    }
+    if (services == null) {
+        services = new ArrayList<>();
+    }
+
+    if (selectedServiceId == null && services.size() > 0) {
+        selectedServiceId = String.valueOf(services.get(0).getServiceId());
+    }
+    if (selectedVehicleId == null && vehicles.size() > 0) {
+        selectedVehicleId = String.valueOf(vehicles.get(0).getVehicleId());
+    }
+%>
+<section class="content-box booking-box">
+
+    <h1>Book a Car Wash</h1>
+    <p class="form-note">Schedule your next wash and confirm the price before checkout.</p>
+
+    <p class="error-message">${requestScope.ERROR}</p>
+    <p class="success-message">${requestScope.SUCCESS}</p>
+
+    <form action="${pageContext.request.contextPath}/booking" method="post">
         <div class="form-group">
             <label>Select Vehicle</label>
-            <select name="vehicleId">
-                <option>51A-99999 - Toyota Camry</option>
-                <option>52B-12345 - Honda Civic</option>
+            <select id="vehicleSelect" name="vehicleId" required>
+                <%
+                    for (VehicleDTO vehicle : vehicles) {
+                        String value = String.valueOf(vehicle.getVehicleId());
+                        String selected = value.equals(selectedVehicleId) ? "selected" : "";
+                %>
+                <option value="<%= value %>" <%= selected %>>
+                    <%= vehicle.getLicensePlate() %> - <%= vehicle.getBrand() %> <%= vehicle.getModel() %>
+                </option>
+                <%
+                    }
+                    if (vehicles.isEmpty()) {
+                %>
+                <option value="">No vehicles available</option>
+                <%
+                    }
+                %>
             </select>
         </div>
 
         <div class="form-group">
             <label>Select Service</label>
-            <select name="serviceId">
-                <option>Basic Wash - 100.000 VND</option>
-                <option>Premium Wash - 250.000 VND</option>
+            <select id="serviceSelect" name="serviceId" required>
+                <%
+                    for (ServiceDTO service : services) {
+                        String value = String.valueOf(service.getServiceId());
+                        String selected = value.equals(selectedServiceId) ? "selected" : "";
+                %>
+                <option value="<%= value %>" data-price="<%= service.getPrice() %>" <%= selected %>>
+                    <%= service.getServiceName() %> - <%= service.getPrice() %> VND
+                </option>
+                <%
+                    }
+                    if (services.isEmpty()) {
+                %>
+                <option value="">No services available</option>
+                <%
+                    }
+                %>
             </select>
         </div>
 
         <div class="form-group">
             <label>Booking Date & Time</label>
-            <input type="datetime-local" name="bookingTime" required>
+            <input type="datetime-local" name="bookingTime" value="<%= bookingTime == null ? "" : bookingTime %>" required>
         </div>
 
         <div class="form-group">
             <label>Notes</label>
-            <textarea name="note" rows="4" placeholder="Additional requests..."></textarea>
+            <textarea name="note" rows="4" placeholder="Additional requests..."><%= note == null ? "" : note %></textarea>
         </div>
 
         <div class="booking-summary">
             <h2>Booking Summary</h2>
-            <p>Tier: Gold Member</p>
-            <p>Original Price: 250.000 VND</p>
-            <p>Discount: 20%</p>
-            <p class="final-price">Final Price: 200.000 VND</p>
+            <p>Tier discount: <%= discountPercent == null ? 0 : discountPercent %>%</p>
+            <p>Original Price: <span id="originalPrice"><%= originalPrice == null ? "N/A" : originalPrice %></span> VND</p>
+            <p>Discount: <span id="discountAmount"><%= discountAmount == null ? "N/A" : discountAmount %></span> VND</p>
+            <p class="final-price">Final Price: <span id="finalPrice"><%= finalPrice == null ? "N/A" : finalPrice %></span> VND</p>
         </div>
 
         <button type="submit">Confirm Booking</button>
+
     </form>
+
 </section>
+
+<script>
+    var discountPercent = <%= discountPercent == null ? 0 : discountPercent.intValue() %>;
+
+    function updatePrice() {
+        var select = document.getElementById('serviceSelect');
+        var originalPriceEl = document.getElementById('originalPrice');
+        var discountEl = document.getElementById('discountAmount');
+        var finalPriceEl = document.getElementById('finalPrice');
+
+        if (!select || !originalPriceEl || !discountEl || !finalPriceEl || select.options.length === 0) {
+            return;
+        }
+
+        var option = select.options[select.selectedIndex];
+        var price = parseFloat(option.getAttribute('data-price')) || 0;
+        var discount = price * discountPercent / 100;
+        var finalPrice = price - discount;
+
+        originalPriceEl.textContent = price.toLocaleString('vi-VN');
+        discountEl.textContent = discount.toLocaleString('vi-VN');
+        finalPriceEl.textContent = finalPrice.toLocaleString('vi-VN');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var select = document.getElementById('serviceSelect');
+        if (select) {
+            select.addEventListener('change', updatePrice);
+        }
+        updatePrice();
+    });
+</script>

@@ -21,7 +21,8 @@
                 <p class="error-message">${requestScope.ERROR}</p>
                 <p class="success-message">${requestScope.SUCCESS}</p>
 
-                <form action="login" method="post">
+                <form action="${pageContext.request.contextPath}/MainController" method="post">
+                    <input type="hidden" name="action" value="login">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
@@ -36,7 +37,7 @@
                 </form>
 
                 <p class="text-center">
-                    <a href="register.jsp">Create an account</a>
+                    <a href="${pageContext.request.contextPath}/MainController?action=registerPage">Create an account</a>
                 </p>
             </section>
         </main>

@@ -22,7 +22,7 @@
                 <p class="error-message">${requestScope.ERROR}</p>
                 <p class="success-message">${requestScope.SUCCESS}</p>
 
-                <form action="register" method="post">
+                <form action="${pageContext.request.contextPath}/register" method="post">
                     <%--
                         Users table:
                         full_name, email, password, role, phone.
@@ -64,7 +64,7 @@
                 </form>
 
                 <p class="text-center">
-                    <a href="login.jsp">Already have an account?</a>
+                    <a href="${pageContext.request.contextPath}/MainController?action=loginPage">Already have an account?</a>
                 </p>
             </section>
         </main>

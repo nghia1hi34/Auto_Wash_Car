@@ -1,4 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    response.sendRedirect("main.jsp?page=dashboard");
+    response.sendRedirect(request.getContextPath() + "/MainController?action=dashboard");
 %>

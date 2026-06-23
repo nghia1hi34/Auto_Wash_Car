@@ -7,7 +7,7 @@
      *   chuyen ve login.jsp de tranh bypass man hinh dang nhap.
      */
     if (session.getAttribute("LOGIN_USER") == null) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(request.getContextPath() + "/MainController?action=loginPage");
         return;
     }
 
@@ -39,6 +39,9 @@
     } else if ("vehicles".equals(currentPage)) {
         contentPage = "/usercontent/vehicles.jsp";
         pageTitle = "Vehicles";
+    } else if ("vehicle-edit".equals(currentPage)) {
+        contentPage = "/usercontent/vehicle-edit.jsp";
+        pageTitle = "Edit Vehicle";
     } else {
         currentPage = "dashboard";
     }
