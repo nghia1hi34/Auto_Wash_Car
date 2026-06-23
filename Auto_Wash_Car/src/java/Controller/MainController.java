@@ -77,6 +77,10 @@ public class MainController extends HttpServlet {
                 case "vehicles":
                     url = "vehicles";
                     break;
+                case "vehicleEdit":
+                case "updateVehicle":
+                    url = "vehicle-edit";
+                    break;
                 case "logout":
                     url = "logout";
                     break;

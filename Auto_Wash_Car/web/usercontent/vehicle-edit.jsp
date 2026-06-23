@@ -18,13 +18,15 @@
         Vehicle data was not found.
     </p>
 
-    <p class="text-center">
-        <a href="MainController?action=vehicles">Back to Vehicles</a>
-    </p>
+    <form action="MainController" method="post" class="text-center">
+        <input type="hidden" name="action" value="vehicles">
+        <button type="submit">Back to Vehicles</button>
+    </form>
     <%
     } else {
     %>
-    <form action="vehicle-edit" method="post" class="vehicle-form">
+    <form action="MainController" method="post" class="vehicle-form">
+        <input type="hidden" name="action" value="updateVehicle">
         <input type="hidden"
                name="vehicleId"
                value="<%= vehicle.getVehicleId()%>">
@@ -44,7 +46,8 @@
 
                 <input type="text"
                        name="brand"
-                       value="<%= vehicle.getBrand() == null ? "" : vehicle.getBrand()%>">
+                       value="<%= vehicle.getBrand() == null ? "" : vehicle.getBrand()%>"
+                       required>
             </div>
 
             <div class="form-group">
@@ -52,7 +55,8 @@
 
                 <input type="text"
                        name="model"
-                       value="<%= vehicle.getModel() == null ? "" : vehicle.getModel()%>">
+                       value="<%= vehicle.getModel() == null ? "" : vehicle.getModel()%>"
+                       required>
             </div>
         </div>
 
@@ -61,16 +65,18 @@
 
             <input type="text"
                    name="color"
-                   value="<%= vehicle.getColor() == null ? "" : vehicle.getColor()%>">
+                   value="<%= vehicle.getColor() == null ? "" : vehicle.getColor()%>"
+                   required>
         </div>
 
         <button type="submit">
             Update Vehicle
         </button>
+    </form>
 
-        <p class="text-center">
-            <a href="MainController?action=vehicles">Cancel</a>
-        </p>
+    <form action="MainController" method="post" class="text-center">
+        <input type="hidden" name="action" value="vehicles">
+        <button type="submit">Cancel</button>
     </form>
     <%
         }

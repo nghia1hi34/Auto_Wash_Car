@@ -10,6 +10,7 @@ import DTO.CustomerDTO;
 import DTO.UserDTO;
 import DTO.VehicleDTO;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,7 @@ public class vehicleEdit extends HttpServlet {
             UserDTO loginUser = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
 
             if (loginUser == null) {
-                response.sendRedirect("MainController?action=loginPage");
+                response.sendRedirect("MainController");
                 return;
             }
 
@@ -48,11 +49,46 @@ public class vehicleEdit extends HttpServlet {
             VehicleDAO vehicleDAO = new VehicleDAO();
 
             if ("POST".equalsIgnoreCase(request.getMethod())) {
+                String action = request.getParameter("action");
+                String vehicleAction = request.getParameter("vehicleAction");
+
+                if ("edit".equals(vehicleAction) || "edit".equals(action)
+                        || "vehicleEdit".equals(action)) {
+                    loadVehicle(request, response, vehicleDAO, customer.getCustomerId());
+                    return;
+                }
+
                 updateVehicle(request, response, vehicleDAO, customer.getCustomerId());
                 return;
             }
 
             String vehicleIdText = request.getParameter("vehicleId");
+            if (vehicleIdText != null && !vehicleIdText.trim().isEmpty()) {
+                request.getSession().setAttribute("EDIT_VEHICLE_ID", vehicleIdText.trim());
+                response.sendRedirect("vehicle-edit");
+                return;
+            }
+
+            loadVehicle(request, response, vehicleDAO, customer.getCustomerId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("ERROR", "System error. Please try again later.");
+            request.setAttribute("page", "vehicle-edit");
+            request.getRequestDispatcher("main.jsp").forward(request, response);
+        }
+    }
+
+    private void loadVehicle(HttpServletRequest request, HttpServletResponse response,
+            VehicleDAO vehicleDAO, int customerId) throws ServletException, IOException {
+        try {
+            String vehicleIdText = request.getParameter("vehicleId");
+
+            if (vehicleIdText != null && !vehicleIdText.trim().isEmpty()) {
+                request.getSession().setAttribute("EDIT_VEHICLE_ID", vehicleIdText.trim());
+            } else {
+                vehicleIdText = (String) request.getSession().getAttribute("EDIT_VEHICLE_ID");
+            }
+
             if (vehicleIdText == null || vehicleIdText.trim().isEmpty()) {
                 request.setAttribute("ERROR", "Vehicle id is required.");
                 request.setAttribute("page", "vehicle-edit");
@@ -61,7 +97,7 @@ public class vehicleEdit extends HttpServlet {
             }
 
             int vehicleId = Integer.parseInt(vehicleIdText.trim());
-            VehicleDTO vehicle = vehicleDAO.getVehicleById(vehicleId, customer.getCustomerId());
+            VehicleDTO vehicle = vehicleDAO.getVehicleById(vehicleId, customerId);
 
             if (vehicle == null) {
                 request.setAttribute("ERROR", "Vehicle was not found.");
@@ -73,7 +109,7 @@ public class vehicleEdit extends HttpServlet {
             request.getRequestDispatcher("main.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("ERROR", "System error. Please try again later.");
+            request.setAttribute("ERROR", "Cannot load vehicle for editing.");
             request.setAttribute("page", "vehicle-edit");
             request.getRequestDispatcher("main.jsp").forward(request, response);
         }
@@ -106,7 +142,12 @@ public class vehicleEdit extends HttpServlet {
             int rows = vehicleDAO.updateVehicle(vehicleId, customerId, licensePlate, brand, model, color);
 
             if (rows > 0) {
-                response.sendRedirect("vehicles");
+                request.getSession().removeAttribute("EDIT_VEHICLE_ID");
+                ArrayList<VehicleDTO> vehicles = vehicleDAO.getVehicles(customerId);
+                request.setAttribute("SUCCESS", "Vehicle updated successfully.");
+                request.setAttribute("LIST_VEHICLES", vehicles);
+                request.setAttribute("page", "vehicles");
+                request.getRequestDispatcher("main.jsp").forward(request, response);
             } else {
                 request.setAttribute("ERROR", "Cannot update vehicle.");
                 request.setAttribute("EDIT_VEHICLE", vehicleDAO.getVehicleById(vehicleId, customerId));
