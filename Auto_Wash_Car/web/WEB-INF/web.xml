@@ -6,6 +6,15 @@
          version="3.1">
 
     <servlet>
+        <servlet-name>MainController</servlet-name>
+        <servlet-class>Controller.MainController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainController</servlet-name>
+        <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>Controller.login</servlet-class>
     </servlet>
@@ -49,12 +58,31 @@
         <servlet-name>booking</servlet-name>
         <url-pattern>/booking</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>history</servlet-name>
+        <servlet-class>Controller.history</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>history</servlet-name>
+        <url-pattern>/history</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>vehicleEdit</servlet-name>
+        <servlet-class>Controller.vehicleEdit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>vehicleEdit</servlet-name>
+        <url-pattern>/vehicle-edit</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>MainController</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 </web-app>

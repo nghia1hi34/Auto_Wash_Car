@@ -16,7 +16,7 @@ public class DBUtils {
     //    Do not change this code
     private static final String DB_NAME = "AutoWashDB_New";
     private static final String DB_USER_NAME = "sa";
-    private static final String DB_PASSWORD = "123456789";
+    private static final String DB_PASSWORD = "Password@123";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection conn = null;
