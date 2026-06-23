@@ -60,6 +60,8 @@ a:hover {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 28px;
+        margin-left: 14%;
+    margin-top: 4%;
 }
 
 .auth-box {
@@ -1350,9 +1352,11 @@ textarea {
     border-radius: 20px;
     border: 1px solid #d7e5f2;
     background:
-        linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+    linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
     box-shadow: 0 16px 40px rgba(31, 42, 54, 0.08);
     text-align: left;
+        margin-left: 19%;
+    margin-top: 5%;
 }
 
 .content-box.dashboard-page h1,
@@ -1436,8 +1440,10 @@ textarea {
     border-radius: 20px;
     border: 1px solid #d7e5f2;
     background:
-        linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+    linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
     box-shadow: 0 16px 40px rgba(31, 42, 54, 0.08);
+    margin-top: 6%;
+    margin-left: 15%;
 }
 
 .content-box.vehicle-page .form-note {
