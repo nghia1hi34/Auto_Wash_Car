@@ -1,13 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="DTO.BookingDTO, java.util.ArrayList"%>
-<%
-    ArrayList<BookingDTO> bookings = (ArrayList<BookingDTO>) request.getAttribute("BOOKING_LIST");
-    String successMsg = (String) session.getAttribute("BOOKING_SUCCESS");
-    if (successMsg != null) session.removeAttribute("BOOKING_SUCCESS");
-    String errorMsg = (String) session.getAttribute("ERROR");
-    if (errorMsg != null) session.removeAttribute("ERROR");
-%>
 <section class="content-box">
+    <h1>Wash History</h1>
+    <p class="form-note">
+        Recent bookings and completed washes for
+        ${empty sessionScope.LOGIN_USER.fullName ? "your account" : sessionScope.LOGIN_USER.fullName}.
+    </p>
 
     <h1>Booking History</h1>
 

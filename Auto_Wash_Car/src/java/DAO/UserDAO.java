@@ -20,7 +20,7 @@ public class UserDAO {
     /*
      * Kiem tra dang nhap.
      * Luu y:
-     * - Chi cho user co status = 1 dang nhap.
+     * - Lay ca tai khoan active va inactive de servlet co the hien thong bao dung.
      * - Dung PreparedStatement de tranh SQL injection.
      */
     public UserDTO checkLogin(String email, String password) {
@@ -35,7 +35,7 @@ public class UserDAO {
             if (cn != null) {
                 String sql = "SELECT user_id, full_name, email, password, role, phone, status, created_at "
                         + "FROM Users "
-                        + "WHERE email = ? AND password = ? AND status = 1";
+                        + "WHERE email = ? AND password = ?";
 
                 st = cn.prepareStatement(sql);
                 st.setString(1, email);

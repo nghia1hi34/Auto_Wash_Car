@@ -1,26 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<main class="app-content">
+<section class="content-box dashboard">
+    <h1>Welcome to Auto Wash Pro</h1>
+    <p class="form-note">Select a feature from your dashboard.</p>
 
-    <section class="content-box dashboard">
-        <h1>Welcome to Auto Wash Pro</h1>
-        <p class="form-note">Select a feature from your dashboard.</p>
-
-        <div class="user-summary">
-            <div class="summary-card">
-                <h3>Current Tier</h3>
-                <p>Gold</p>
-            </div>
-
-            <div class="summary-card">
-                <h3>Loyalty Points</h3>
-                <p>1250</p>
-            </div>
-
-            <div class="summary-card">
-                <h3>Total Washes</h3>
-                <p>18</p>
-            </div>
+    <div class="user-summary">
+        <div class="summary-card">
+            <h3>Current Tier</h3>
+            <p>Gold</p>
         </div>
 
         <div class="dashboard-grid">
@@ -44,6 +31,5 @@
                 <p>Manage registered vehicles</p>
             </a>
         </div>
-    </section>
 
 </main>

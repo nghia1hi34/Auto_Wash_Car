@@ -15,8 +15,8 @@ import java.sql.SQLException;
 public class DBUtils {
     //    Do not change this code
     private static final String DB_NAME = "AutoWashDB_New";
-    private static final String DB_USER_NAME = "SA";
-    private static final String DB_PASSWORD = "12345";
+    private static final String DB_USER_NAME = "sa";
+    private static final String DB_PASSWORD = "Password@123";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection conn = null;

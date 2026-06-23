@@ -2,6 +2,7 @@ package DAO;
 
 import DBUtils.DBUtils;
 import DTO.ServiceDTO;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,81 +10,92 @@ import java.util.ArrayList;
 
 public class ServiceDAO {
 
-    public ArrayList<ServiceDTO> getServices() {
+    public ArrayList<ServiceDTO> getActiveServices() {
         ArrayList<ServiceDTO> result = new ArrayList<>();
-
         Connection cn = null;
         PreparedStatement st = null;
-        ResultSet rs = null;
+        ResultSet table = null;
 
         try {
             cn = DBUtils.getConnection();
 
             if (cn != null) {
-
-                String sql = "SELECT service_id, service_name, price "
+                String sql = "SELECT service_id, service_name, price, duration_minutes, status "
                         + "FROM Services "
-                        + "WHERE status = 1";
+                        + "WHERE status = 1 "
+                        + "ORDER BY service_id";
 
                 st = cn.prepareStatement(sql);
+                table = st.executeQuery();
 
-                rs = st.executeQuery();
+                while (table.next()) {
+                    int serviceId = table.getInt("service_id");
+                    String serviceName = table.getString("service_name");
+                    BigDecimal price = table.getBigDecimal("price");
+                    int durationMinutes = table.getInt("duration_minutes");
+                    boolean status = table.getBoolean("status");
 
-                while (rs.next()) {
-
-                    int serviceId = rs.getInt("service_id");
-                    String serviceName = rs.getString("service_name");
-                    double price = rs.getDouble("price");
-
-                    ServiceDTO service = new ServiceDTO();
-
-                    service.setServiceId(serviceId);
-                    service.setServiceName(serviceName);
-                    service.setPrice(price);
-
-                    result.add(service);
+                    result.add(new ServiceDTO(serviceId, serviceName, price, durationMinutes, status));
                 }
             }
-            cn.close();
-
         } catch (Exception e) {
             e.printStackTrace();
-        } 
-        return result;
-    }
-    public ServiceDTO getServiceById(int serviceId) {
-
-    ServiceDTO service = null;
-
-    try {
-        Connection cn = DBUtils.getConnection();
-
-        String sql = "SELECT * FROM Services WHERE service_id=?";
-
-        PreparedStatement st = cn.prepareStatement(sql);
-
-        st.setInt(1, serviceId);
-
-        ResultSet rs = st.executeQuery();
-
-        if(rs.next()){
-
-            service = new ServiceDTO();
-
-            service.setServiceId(rs.getInt("service_id"));
-            service.setServiceName(rs.getString("service_name"));
-            service.setPrice(rs.getDouble("price"));
-
+        } finally {
+            closeResources(table, st, cn);
         }
 
-        cn.close();
-
-    } catch(Exception e){
-        e.printStackTrace();
+        return result;
     }
 
-    return service;
-}
-}
+    public ServiceDTO getServiceById(int serviceId) {
+        ServiceDTO result = null;
+        Connection cn = null;
+        PreparedStatement st = null;
+        ResultSet table = null;
 
-    
+        try {
+            cn = DBUtils.getConnection();
+
+            if (cn != null) {
+                String sql = "SELECT service_id, service_name, price, duration_minutes, status "
+                        + "FROM Services "
+                        + "WHERE service_id = ? AND status = 1";
+
+                st = cn.prepareStatement(sql);
+                st.setInt(1, serviceId);
+                table = st.executeQuery();
+
+                if (table.next()) {
+                    result = new ServiceDTO(
+                            table.getInt("service_id"),
+                            table.getString("service_name"),
+                            table.getBigDecimal("price"),
+                            table.getInt("duration_minutes"),
+                            table.getBoolean("status"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(table, st, cn);
+        }
+
+        return result;
+    }
+
+    private void closeResources(ResultSet table, PreparedStatement st, Connection cn) {
+        try {
+            if (table != null) {
+                table.close();
+            }
+            if (st != null) {
+                st.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

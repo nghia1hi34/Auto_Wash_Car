@@ -1,26 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DTO;
 
-/**
- *
- * @author ADMIN
- */
-public class ServiceDTO {
+import java.io.Serializable;
+import java.math.BigDecimal;
 
+public class ServiceDTO implements Serializable {
     private int serviceId;
     private String serviceName;
-    private double price;
+    private BigDecimal price;
+    private int durationMinutes;
+    private boolean status;
 
     public ServiceDTO() {
     }
 
-    public ServiceDTO(int serviceId, String serviceName, double price) {
+    public ServiceDTO(int serviceId, String serviceName, BigDecimal price, int durationMinutes, boolean status) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.price = price;
+        this.durationMinutes = durationMinutes;
+        this.status = status;
     }
 
     public int getServiceId() {
@@ -39,13 +37,27 @@ public class ServiceDTO {
         this.serviceName = serviceName;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    public int getDurationMinutes() {
+        return durationMinutes;
+    }
 
+    public void setDurationMinutes(int durationMinutes) {
+        this.durationMinutes = durationMinutes;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
