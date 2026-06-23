@@ -31,7 +31,7 @@ public class vehicleEdit extends HttpServlet {
             UserDTO loginUser = (UserDTO) request.getSession().getAttribute("LOGIN_USER");
 
             if (loginUser == null) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("MainController?action=loginPage");
                 return;
             }
 

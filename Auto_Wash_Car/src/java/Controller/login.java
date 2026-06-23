@@ -50,7 +50,7 @@ public class login extends HttpServlet {
                     request.getSession().setAttribute("LOGIN_USER", user);
 
                     // Dang nhap thanh cong thi chuyen den layout chinh cua user.
-                    response.sendRedirect("main.jsp?page=dashboard");
+                    response.sendRedirect("MainController?action=dashboard");
                 } else {
                     // Tai khoan ton tai nhung da bi khoa.
                     request.setAttribute("ERROR", "Access denied. Your account is inactive.");
@@ -80,7 +80,7 @@ public class login extends HttpServlet {
          * Neu nguoi dung go truc tiep /login bang GET,
          * chi can mo trang login.jsp, khong xu ly dang nhap.
          */
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("MainController?action=loginPage");
     }
 
     /**

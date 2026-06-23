@@ -71,7 +71,7 @@ public class booking extends HttpServlet {
         UserDTO user = (UserDTO) request.getSession()
                 .getAttribute("LOGIN_USER");
         if (user == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("MainController?action=loginPage");
             return;
         }
         CustomerDAO customerDAO = new CustomerDAO();
@@ -120,7 +120,7 @@ public class booking extends HttpServlet {
                             .getAttribute("LOGIN_USER");
 
             if (user == null) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("MainController?action=loginPage");
                 return;
             }
 
@@ -132,7 +132,7 @@ public class booking extends HttpServlet {
                             user.getUserId());
 
             if (customer == null) {
-                response.sendRedirect("main.jsp?page=booking");
+            response.sendRedirect("MainController?action=booking");
                 return;
             }
 
@@ -237,7 +237,7 @@ public class booking extends HttpServlet {
                             "System error!");
 
             response.sendRedirect(
-                    "main.jsp?page=booking");
+                    "MainController?action=booking");
         }
     }
 

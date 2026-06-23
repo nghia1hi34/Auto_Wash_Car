@@ -17,7 +17,7 @@
                 Welcome User
             </span>
 
-            <a href="logout" class="logout-link">
+            <a href="MainController?action=logout" class="logout-link">
                 Logout
             </a>
         </div>
@@ -27,13 +27,13 @@
     <!-- LEFT MENU -->
     <aside class="app-menu">
 
-        <a href="dashboard.jsp">Dashboard</a>
+        <a href="MainController?action=dashboard">Dashboard</a>
 
-        <a href="vehicles.jsp">Vehicles</a>
+        <a href="MainController?action=vehicles">Vehicles</a>
 
-        <a href="booking.jsp">Booking</a>
+        <a href="MainController?action=booking">Booking</a>
 
-        <a href="history.jsp">History</a>
+        <a href="MainController?action=history">History</a>
 
     </aside>
 

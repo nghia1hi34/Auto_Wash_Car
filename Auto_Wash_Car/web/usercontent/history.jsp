@@ -37,7 +37,7 @@
     <% if (bookings == null || bookings.isEmpty()) { %>
         <div style="text-align:center;padding:48px;color:#718096;">
             <p style="font-size:18px;">No bookings yet.</p>
-            <a href="booking" style="color:#3182ce;">Book your first car wash &rarr;</a>
+            <a href="MainController?action=booking" style="color:#3182ce;">Book your first car wash &rarr;</a>
         </div>
     <% } else { %>
         <table class="history-table">
